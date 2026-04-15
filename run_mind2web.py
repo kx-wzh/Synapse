@@ -6,6 +6,7 @@ from tqdm import tqdm
 
 from synapse.envs.mind2web.env_utils import load_json
 from synapse.agents.mind2web import eval_sample
+from synapse.utils.llm import DEFAULT_OLLAMA_API_BASE, slugify_model_name
 
 logger = logging.getLogger("synapse")
 logger.setLevel(logging.INFO)
@@ -24,7 +25,11 @@ def create_parser():
     parser.add_argument("--previous_top_k_elements", type=int, default=3)
     parser.add_argument("--top_k_elements", type=int, default=5)
     parser.add_argument("--retrieve_top_k", type=int, default=3)
-    parser.add_argument("--model", type=str, default="gpt-3.5-turbo-16k-0613")
+    parser.add_argument("--chat_model", type=str, default="qwen3.5:4b")
+    parser.add_argument("--embedding_model", type=str, default="qwen3-embedding:0.6b")
+    parser.add_argument("--api_base", type=str, default=DEFAULT_OLLAMA_API_BASE)
+    parser.add_argument("--api_key", type=str, default=None)
+    parser.add_argument("--max_context_tokens", type=int, default=32768)
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--no_memory", action="store_true", default=False)
     parser.add_argument("--no_trajectory", action="store_true", default=False)
@@ -37,8 +42,14 @@ def create_parser():
 def main():
     parser = create_parser()
     args = parser.parse_args()
+    args.model = args.chat_model
     current_path = os.getcwd()
-    args.memory_path = os.path.join(current_path, "synapse/memory/mind2web")
+    args.memory_path = os.path.join(
+        current_path,
+        "synapse/memory/mind2web",
+        slugify_model_name(args.embedding_model),
+        f"top{args.previous_top_k_elements}",
+    )
     args.log_dir = os.path.join(current_path, "results/mind2web")
 
     # Evaluate test set
