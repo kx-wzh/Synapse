@@ -1,0 +1,6 @@
+.vscode
+test/
+__pycache__/
+docs/
+.codex
+.worktrees/
