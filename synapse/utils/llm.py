@@ -2,9 +2,11 @@ import logging
 import re
 import os
 import inspect
-import tiktoken
 import backoff
-import openai
+try:
+    import tiktoken
+except ImportError:
+    tiktoken = None
 from openai import (
     OpenAI,
     APIConnectionError,
@@ -14,38 +16,77 @@ from openai import (
 
 logger = logging.getLogger("main")
 
-client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+DEFAULT_OLLAMA_API_BASE = "http://localhost:11434/v1"
+DEFAULT_OLLAMA_API_KEY = "ollama"
+
+
+def _normalize_non_empty(value: str | None) -> str | None:
+    if value is None:
+        return None
+    stripped = value.strip()
+    return stripped or None
+
+
+def resolve_api_key(explicit_api_key: str | None) -> str:
+    normalized_explicit = _normalize_non_empty(explicit_api_key)
+    if normalized_explicit is not None:
+        return normalized_explicit
+
+    normalized_env_key = _normalize_non_empty(os.environ.get("OPENAI_API_KEY"))
+    if normalized_env_key is not None:
+        return normalized_env_key
+
+    return DEFAULT_OLLAMA_API_KEY
+
+
+def slugify_model_name(model_name: str) -> str:
+    return model_name.replace("/", "-").replace(":", "-")
+
+
+def build_openai_compatible_client(
+    api_base: str | None = None,
+    api_key: str | None = None,
+) -> OpenAI:
+    base_url = _normalize_non_empty(api_base)
+    if base_url is None:
+        base_url = _normalize_non_empty(os.environ.get("OPENAI_API_BASE"))
+    if base_url is None:
+        base_url = _normalize_non_empty(os.environ.get("OLLAMA_API_BASE"))
+    if base_url is None:
+        base_url = DEFAULT_OLLAMA_API_BASE
+    return OpenAI(base_url=base_url, api_key=resolve_api_key(api_key))
 
 
 def num_tokens_from_messages(messages, model):
     """Return the number of tokens used by a list of messages.
     Borrowed from https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb
     """
-    try:
-        encoding = tiktoken.encoding_for_model(model)
-    except KeyError:
-        print("Warning: model not found. Using cl100k_base encoding.")
-        encoding = tiktoken.get_encoding("cl100k_base")
-    if model in {
-        "gpt-3.5-turbo-0613",
-        "gpt-3.5-turbo-16k-0613",
-        "gpt-3.5-turbo-1106",
-        "gpt-4-0314",
-        "gpt-4-32k-0314",
-        "gpt-4-0613",
-        "gpt-4-32k-0613",
-    }:
-        tokens_per_message = 3
-        tokens_per_name = 1
-    elif model == "gpt-3.5-turbo-0301":
+    encoding = None
+    if tiktoken is not None:
+        try:
+            encoding = tiktoken.encoding_for_model(model)
+        except KeyError:
+            logger.warning("Model %s not found. Using cl100k_base encoding.", model)
+            try:
+                encoding = tiktoken.get_encoding("cl100k_base")
+            except Exception:
+                encoding = None
+    if encoding is None:
+        # Keep token counting available in offline environments.
+        class _FallbackEncoding:
+            @staticmethod
+            def encode(value):
+                return value.encode("utf-8")
+
+        encoding = _FallbackEncoding()
+    if model == "gpt-3.5-turbo-0301":
         tokens_per_message = (
             4  # every message follows <|start|>{role/name}\n{content}<|end|>\n
         )
         tokens_per_name = -1  # if there's a name, the role is omitted
     else:
-        raise NotImplementedError(
-            f"""num_tokens_from_messages() is not implemented for model {model}. See https://github.com/openai/openai-python/blob/main/chatml.md for information on how messages are converted to tokens."""
-        )
+        tokens_per_message = 3
+        tokens_per_name = 1
     num_tokens = 0
     for message in messages:
         num_tokens += tokens_per_message
@@ -65,29 +106,6 @@ MAX_TOKENS = {
 }
 
 
-def get_mode(model: str) -> str:
-    """Check if the model is a chat model."""
-
-    if model in [
-        "gpt-3.5-turbo-0301",
-        "gpt-3.5-turbo-0613",
-        "gpt-3.5-turbo-1106",
-        "gpt-3.5-turbo-16k-0613",
-        "gpt-4-0314",
-        "gpt-4-32k-0314",
-        "gpt-4-0613",
-        "gpt-4-32k-0613",
-    ]:
-        return "chat"
-    elif model in [
-        "davinci-002",
-        "gpt-3.5-turbo-instruct-0914",
-    ]:
-        return "completion"
-    else:
-        raise ValueError(f"Unknown model: {model}")
-
-
 @backoff.on_exception(
     backoff.constant,
     (APIError, RateLimitError, APIConnectionError),
@@ -97,35 +115,39 @@ def generate_response(
     messages: list[dict[str, str]],
     model: str,
     temperature: float,
+    api_base: str | None = None,
+    api_key: str | None = None,
     stop_tokens: list[str] | None = None,
 ) -> tuple[str, dict[str, int]]:
-    """Send a request to the OpenAI API."""
+    """Send a request to an OpenAI-compatible chat API."""
 
     logger.info(
         f"Send a request to the language model from {inspect.stack()[1].function}"
     )
 
-    if get_mode(model) == "chat":
-        response = client.chat.completions.create(
-            model=model,
-            messages=messages,
-            temperature=temperature,
-            stop=stop_tokens if stop_tokens else None,
+    client = build_openai_compatible_client(api_base=api_base, api_key=api_key)
+    response = client.chat.completions.create(
+        model=model,
+        messages=messages,
+        temperature=temperature,
+        stop=stop_tokens if stop_tokens else None,
+    )
+    choices = getattr(response, "choices", None)
+    if not choices:
+        raise ValueError(
+            "Malformed chat completion response: missing choices[0].message.content"
         )
-        message = response.choices[0].message.content
-    else:
-        prompt = "\n\n".join(m["content"] for m in messages) + "\n\n"
-        response = openai.Completion.create(
-            prompt=prompt,
-            engine=model,
-            temperature=temperature,
-            stop=stop_tokens if stop_tokens else None,
+    message_content = getattr(getattr(choices[0], "message", None), "content", None)
+    if message_content is None:
+        raise ValueError(
+            "Malformed chat completion response: missing choices[0].message.content"
         )
-        message = response["choices"][0]["text"]
+    message = message_content
+    usage = getattr(response, "usage", None)
     info = {
-        "prompt_tokens": response.usage.prompt_tokens,
-        "completion_tokens": response.usage.completion_tokens,
-        "total_tokens": response.usage.total_tokens,
+        "prompt_tokens": int(getattr(usage, "prompt_tokens", 0) or 0),
+        "completion_tokens": int(getattr(usage, "completion_tokens", 0) or 0),
+        "total_tokens": int(getattr(usage, "total_tokens", 0) or 0),
     }
 
     return message, info
