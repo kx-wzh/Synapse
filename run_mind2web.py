@@ -23,10 +23,13 @@ def ensure_logger_handler():
 
 def create_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data_dir", type=str)
+    parser.add_argument("--data_dir", type=str, required=True)
     # 252, 177, 912
     parser.add_argument(
-        "--benchmark", type=str, choices=["test_task", "test_website", "test_domain"]
+        "--benchmark",
+        type=str,
+        choices=["test_task", "test_website", "test_domain"],
+        required=True,
     )
     parser.add_argument("--previous_top_k_elements", type=int, default=3)
     parser.add_argument("--top_k_elements", type=int, default=5)
@@ -67,7 +70,6 @@ def main():
     args = configure_runtime_args(args, current_path)
 
     # Evaluate test set
-    assert args.benchmark in ["test_task", "test_website", "test_domain"]
     samples = load_json(args.data_dir, args.benchmark)
 
     # add prediction scores and ranks to candidates

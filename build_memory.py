@@ -18,9 +18,16 @@ def create_parser():
     return parser
 
 
+def parse_args_with_validation(parser, argv=None):
+    args = parser.parse_args(argv)
+    if args.env == "mind2web" and not args.mind2web_data_dir:
+        parser.error("--mind2web_data_dir is required when --env mind2web")
+    return args
+
+
 if __name__ == "__main__":
     parser = create_parser()
-    args = parser.parse_args()
+    args = parse_args_with_validation(parser)
 
     current_path = os.getcwd()
     if args.env == "miniwob":

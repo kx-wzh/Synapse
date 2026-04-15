@@ -27,6 +27,20 @@ class CliEntrypointTests(unittest.TestCase):
         self.assertEqual(args.embedding_model, "qwen3-embedding:0.6b")
         self.assertEqual(args.api_base, "http://localhost:11434/v1")
 
+    def test_build_memory_mind2web_requires_data_dir(self):
+        parser = build_memory.create_parser()
+        with self.assertRaises(SystemExit):
+            build_memory.parse_args_with_validation(parser, ["--env", "mind2web"])
+
+    def test_run_mind2web_parser_requires_data_dir_and_benchmark(self):
+        parser = run_mind2web.create_parser()
+        with self.assertRaises(SystemExit):
+            parser.parse_args([])
+        with self.assertRaises(SystemExit):
+            parser.parse_args(["--benchmark", "test_domain"])
+        with self.assertRaises(SystemExit):
+            parser.parse_args(["--data_dir", "/tmp/Mind2Web/data"])
+
     def test_run_mind2web_parser_accepts_ollama_chat_flags(self):
         args = run_mind2web.create_parser().parse_args(
             [
