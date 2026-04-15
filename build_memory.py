@@ -7,7 +7,9 @@ from synapse.utils.llm import DEFAULT_OLLAMA_API_BASE, slugify_model_name
 
 def create_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--env", type=str, choices=["miniwob", "mind2web"])
+    parser.add_argument(
+        "--env", type=str, choices=["miniwob", "mind2web"], required=True
+    )
     parser.add_argument("--mind2web_data_dir", type=str)
     parser.add_argument("--mind2web_top_k_elements", type=int, default=3)
     parser.add_argument("--embedding_model", type=str, default="qwen3-embedding:0.6b")
