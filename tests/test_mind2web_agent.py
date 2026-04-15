@@ -1,9 +1,13 @@
+import json
+import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 
 from synapse.agents.mind2web import (
     build_response_record,
+    eval_sample,
     get_mind2web_log_dir,
     normalize_action_response,
 )
@@ -49,6 +53,103 @@ class Mind2WebAgentTests(unittest.TestCase):
         self.assertEqual(record["embedding_model"], "qwen3-embedding:0.6b")
         self.assertEqual(record["normalized_action"], "CLICK [4]")
         self.assertNotIn("error_type", record)
+
+    @patch("synapse.agents.mind2web.get_target_obs_and_act")
+    def test_eval_sample_logs_structured_record_when_ground_truth_missing(
+        self, get_target_obs_and_act_mock
+    ):
+        get_target_obs_and_act_mock.return_value = ("obs", "CLICK [4]")
+        sample = {
+            "confirmed_task": "book something",
+            "action_reprs": ["click candidate"],
+            "actions": [{"pos_candidates": [], "neg_candidates": []}],
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            args = SimpleNamespace(
+                log_dir=tmpdir,
+                chat_model="qwen3.5:4b",
+                embedding_model="qwen3-embedding:0.6b",
+                api_base="http://localhost:11434/v1",
+                api_key="ollama",
+                benchmark="test_domain",
+                no_memory=True,
+                no_trajectory=True,
+                top_k_elements=5,
+                temperature=0.0,
+                max_context_tokens=32768,
+            )
+            eval_sample(task_id=0, args=args, sample=sample)
+
+            with open(get_mind2web_log_dir(args) / "0.json", "r") as handle:
+                conversation = json.load(handle)
+
+        record = conversation[0]
+        self.assertIsInstance(record, dict)
+        self.assertEqual(record["error_type"], "ground_truth_not_in_cleaned_html")
+        self.assertEqual(record["chat_model"], "qwen3.5:4b")
+        self.assertEqual(record["embedding_model"], "qwen3-embedding:0.6b")
+        self.assertEqual(record["api_base"], "http://localhost:11434/v1")
+        self.assertEqual(
+            record["token_stats"],
+            {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0},
+        )
+
+    @patch("synapse.agents.mind2web.generate_response")
+    @patch("synapse.agents.mind2web.num_tokens_from_messages")
+    @patch("synapse.agents.mind2web.get_top_k_obs")
+    @patch("synapse.agents.mind2web.get_target_obs_and_act")
+    def test_eval_sample_logs_structured_record_for_context_limit_overflow(
+        self,
+        get_target_obs_and_act_mock,
+        get_top_k_obs_mock,
+        num_tokens_from_messages_mock,
+        generate_response_mock,
+    ):
+        get_target_obs_and_act_mock.return_value = ("obs", "CLICK [4]")
+        get_top_k_obs_mock.return_value = ("<html>content</html>", ["4"])
+        num_tokens_from_messages_mock.return_value = 42
+        sample = {
+            "confirmed_task": "book something",
+            "action_reprs": ["click candidate"],
+            "actions": [
+                {
+                    "pos_candidates": [{"rank": 0, "backend_node_id": "4"}],
+                    "neg_candidates": [],
+                }
+            ],
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            args = SimpleNamespace(
+                log_dir=tmpdir,
+                chat_model="qwen3.5:4b",
+                embedding_model="qwen3-embedding:0.6b",
+                api_base="http://localhost:11434/v1",
+                api_key="ollama",
+                benchmark="test_domain",
+                no_memory=True,
+                no_trajectory=True,
+                top_k_elements=5,
+                temperature=0.0,
+                max_context_tokens=10,
+            )
+            eval_sample(task_id=1, args=args, sample=sample)
+
+            with open(get_mind2web_log_dir(args) / "1.json", "r") as handle:
+                conversation = json.load(handle)
+
+        generate_response_mock.assert_not_called()
+        record = conversation[0]
+        self.assertIsInstance(record, dict)
+        self.assertEqual(record["error_type"], "context_limit_exceeded")
+        self.assertEqual(record["chat_model"], "qwen3.5:4b")
+        self.assertEqual(record["embedding_model"], "qwen3-embedding:0.6b")
+        self.assertEqual(record["api_base"], "http://localhost:11434/v1")
+        self.assertEqual(
+            record["token_stats"],
+            {"prompt_tokens": 42, "completion_tokens": 0, "total_tokens": 42},
+        )
 
 
 if __name__ == "__main__":

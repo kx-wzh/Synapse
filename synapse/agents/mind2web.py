@@ -187,7 +187,20 @@ def eval_sample(task_id, args, sample):
                 action_f1.append(0)
                 step_success.append(0)
                 prev_actions.append(act_repr)
-                conversation.append("The ground truth element is not in cleaned html")
+                conversation.append(
+                    build_response_record(
+                        args=args,
+                        message=[],
+                        raw_response="The ground truth element is not in cleaned html",
+                        normalized_action="",
+                        info={
+                            "prompt_tokens": 0,
+                            "completion_tokens": 0,
+                            "total_tokens": 0,
+                        },
+                        error_type="ground_truth_not_in_cleaned_html",
+                    )
+                )
                 continue
 
             obs, _ = get_top_k_obs(s, args.top_k_elements, use_raw=False)
@@ -209,7 +222,20 @@ def eval_sample(task_id, args, sample):
                 step_success.append(0)
                 prev_obs.append("Observation: `" + target_obs + "`")
                 prev_actions.append("Action: `" + target_act + "` (" + act_repr + ")")
-                conversation.append("The ground truth element is not in cleaned html")
+                conversation.append(
+                    build_response_record(
+                        args=args,
+                        message=[],
+                        raw_response="The ground truth element is not in cleaned html",
+                        normalized_action="",
+                        info={
+                            "prompt_tokens": 0,
+                            "completion_tokens": 0,
+                            "total_tokens": 0,
+                        },
+                        error_type="ground_truth_not_in_cleaned_html",
+                    )
+                )
                 continue
 
             query = []
@@ -250,10 +276,18 @@ def eval_sample(task_id, args, sample):
             action_f1.append(0)
             step_success.append(0)
             conversation.append(
-                {
-                    "input": sys_message + query,
-                    "output": f"FAILED DUE TO THE CONTEXT LIMIT: {total_num_tokens}",
-                }
+                build_response_record(
+                    args=args,
+                    message=sys_message + query,
+                    raw_response=f"FAILED DUE TO THE CONTEXT LIMIT: {total_num_tokens}",
+                    normalized_action="",
+                    info={
+                        "prompt_tokens": total_num_tokens,
+                        "completion_tokens": 0,
+                        "total_tokens": total_num_tokens,
+                    },
+                    error_type="context_limit_exceeded",
+                )
             )
             continue
 
