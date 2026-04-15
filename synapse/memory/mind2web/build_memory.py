@@ -1,9 +1,9 @@
-import openai
-import os
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
 import json
+import os
 import pickle
+from datetime import datetime, timezone
+
+from langchain.vectorstores import FAISS
 from tqdm import tqdm
 
 from synapse.envs.mind2web.env_utils import (
@@ -11,6 +11,7 @@ from synapse.envs.mind2web.env_utils import (
     get_target_obs_and_act,
     get_top_k_obs,
 )
+from synapse.utils.embeddings import OpenAICompatibleEmbeddings
 
 
 def get_specifiers_from_sample(sample: dict) -> str:
@@ -25,8 +26,33 @@ def get_specifiers_from_sample(sample: dict) -> str:
     return specifier
 
 
-def build_memory(memory_path: str, data_dir: str, top_k: int = 3):
-    openai.api_key = os.environ["OPENAI_API_KEY"]
+def save_memory_metadata(
+    memory_path: str,
+    embedding_model: str,
+    api_base: str,
+    top_k: int,
+    num_exemplars: int,
+):
+    metadata = {
+        "embedding_model": embedding_model,
+        "api_base": api_base,
+        "top_k_elements": top_k,
+        "num_exemplars": num_exemplars,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    with open(os.path.join(memory_path, "memory_meta.json"), "w") as handle:
+        json.dump(metadata, handle, indent=2)
+
+
+def build_memory(
+    memory_path: str,
+    data_dir: str,
+    top_k: int = 3,
+    embedding_model: str = "qwen3-embedding:0.6b",
+    api_base: str = "http://localhost:11434/v1",
+    api_key: str | None = None,
+):
+    os.makedirs(memory_path, exist_ok=True)
 
     score_path = "scores_all_data.pkl"
     with open(os.path.join(data_dir, score_path), "rb") as f:
@@ -72,7 +98,11 @@ def build_memory(memory_path: str, data_dir: str, top_k: int = 3):
     print(f"# of exemplars: {len(exemplars)}")
 
     # embed memory_keys into VectorDB
-    embedding = OpenAIEmbeddings(model="text-embedding-ada-002")
+    embedding = OpenAICompatibleEmbeddings(
+        model=embedding_model,
+        api_base=api_base,
+        api_key=api_key,
+    )
     metadatas = [{"name": i} for i in range(len(specifiers))]
     memory = FAISS.from_texts(
         texts=specifiers,
@@ -80,9 +110,10 @@ def build_memory(memory_path: str, data_dir: str, top_k: int = 3):
         metadatas=metadatas,
     )
     memory.save_local(memory_path)
+    save_memory_metadata(memory_path, embedding_model, api_base, top_k, len(exemplars))
 
 
-def retrieve_exemplar_name(memory, query: str, top_k) -> tuple[list[str], list[float]]:
+def retrieve_exemplar_name(memory, query: str, top_k) -> tuple[list[int], list[float]]:
     docs_and_similarities = memory.similarity_search_with_score(query, top_k)
     retrieved_exemplar_names = []
     scores = []
@@ -93,8 +124,17 @@ def retrieve_exemplar_name(memory, query: str, top_k) -> tuple[list[str], list[f
     return retrieved_exemplar_names, scores
 
 
-def load_memory(memory_path):
-    embedding = OpenAIEmbeddings(model="text-embedding-ada-002")
+def load_memory(
+    memory_path: str,
+    embedding_model: str,
+    api_base: str = "http://localhost:11434/v1",
+    api_key: str | None = None,
+):
+    embedding = OpenAICompatibleEmbeddings(
+        model=embedding_model,
+        api_base=api_base,
+        api_key=api_key,
+    )
     memory = FAISS.load_local(memory_path, embedding)
 
     return memory
