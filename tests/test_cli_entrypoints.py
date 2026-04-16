@@ -1,5 +1,8 @@
 import unittest
 from argparse import Namespace
+import json
+import tempfile
+from pathlib import Path
 
 import build_memory
 import run_mind2web
@@ -81,6 +84,92 @@ class CliEntrypointTests(unittest.TestCase):
             updated.memory_path,
             f"/repo/synapse/memory/mind2web/{slugify_model_name(embedding_model)}/top7",
         )
+
+    def test_run_mind2web_summarize_benchmark_results_aggregates_metrics(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            result_dir = Path(tmpdir)
+            (result_dir / "0.json").write_text(
+                json.dumps(
+                    [
+                        {"role": "user", "content": "x"},
+                        {
+                            "element_acc": [1, 0],
+                            "action_f1": [1.0, 0.5],
+                            "step_success": [1, 0],
+                            "success": [0],
+                            "token_stats": {
+                                "prompt_tokens": 10,
+                                "completion_tokens": 2,
+                                "total_tokens": 12,
+                            },
+                        },
+                    ]
+                )
+            )
+            (result_dir / "1.json").write_text(
+                json.dumps(
+                    [
+                        {"role": "user", "content": "y"},
+                        {
+                            "element_acc": [1],
+                            "action_f1": [0.25],
+                            "step_success": [1],
+                            "success": [1],
+                            "token_stats": {
+                                "prompt_tokens": 20,
+                                "completion_tokens": 4,
+                                "total_tokens": 24,
+                            },
+                        },
+                    ]
+                )
+            )
+
+            summary = run_mind2web.summarize_benchmark_results(result_dir, [0, 1])
+
+        self.assertEqual(summary["num_examples"], 2)
+        self.assertAlmostEqual(summary["element_acc"], 2 / 3)
+        self.assertAlmostEqual(summary["action_f1"], 7 / 12)
+        self.assertAlmostEqual(summary["step_success"], 2 / 3)
+        self.assertAlmostEqual(summary["success_rate"], 0.5)
+        self.assertEqual(
+            summary["token_totals"],
+            {"prompt_tokens": 30, "completion_tokens": 6, "total_tokens": 36},
+        )
+
+    def test_run_mind2web_write_benchmark_summary_persists_summary_json(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            result_dir = Path(tmpdir)
+            (result_dir / "0.json").write_text(
+                json.dumps(
+                    [
+                        {
+                            "element_acc": [1],
+                            "action_f1": [1.0],
+                            "step_success": [1],
+                            "success": [1],
+                            "token_stats": {
+                                "prompt_tokens": 3,
+                                "completion_tokens": 1,
+                                "total_tokens": 4,
+                            },
+                        }
+                    ]
+                )
+            )
+            args = Namespace(log_dir="/unused")
+
+            summary_path = run_mind2web.write_benchmark_summary(
+                args=args,
+                result_dir=result_dir,
+                task_ids=[0],
+            )
+
+            self.assertEqual(summary_path, result_dir / "summary.json")
+            persisted = json.loads(summary_path.read_text())
+
+        self.assertEqual(persisted["num_examples"], 1)
+        self.assertAlmostEqual(persisted["success_rate"], 1.0)
 
 
 if __name__ == "__main__":

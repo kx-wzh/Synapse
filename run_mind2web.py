@@ -1,11 +1,13 @@
+import json
 import pickle
 import logging
 import argparse
 import os
+from pathlib import Path
 from tqdm import tqdm
 
 from synapse.envs.mind2web.env_utils import load_json
-from synapse.agents.mind2web import eval_sample
+from synapse.agents.mind2web import eval_sample, get_mind2web_log_dir
 from synapse.utils.llm import DEFAULT_OLLAMA_API_BASE, slugify_model_name
 
 logger = logging.getLogger("synapse")
@@ -60,6 +62,77 @@ def configure_runtime_args(args, current_path):
     return args
 
 
+def _mean(values):
+    return sum(values) / len(values) if values else 0.0
+
+
+def summarize_benchmark_results(result_dir: Path, task_ids: list[int]) -> dict:
+    element_acc = []
+    action_f1 = []
+    step_success = []
+    success = []
+    token_totals = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+    completed_task_ids = []
+
+    for task_id in task_ids:
+        result_path = result_dir / f"{task_id}.json"
+        if not result_path.exists():
+            logger.warning("Skipping missing result file: %s", result_path)
+            continue
+
+        conversation = json.loads(result_path.read_text())
+        if not conversation:
+            logger.warning("Skipping empty result file: %s", result_path)
+            continue
+
+        summary = conversation[-1]
+        completed_task_ids.append(task_id)
+        element_acc.extend(summary.get("element_acc", []))
+        action_f1.extend(summary.get("action_f1", []))
+        step_success.extend(summary.get("step_success", []))
+        success.extend(summary.get("success", []))
+
+        token_stats = summary.get("token_stats", {})
+        for key in token_totals:
+            token_totals[key] += token_stats.get(key, 0)
+
+    return {
+        "num_examples": len(completed_task_ids),
+        "task_ids": completed_task_ids,
+        "element_acc": _mean(element_acc),
+        "action_f1": _mean(action_f1),
+        "step_success": _mean(step_success),
+        "success_rate": _mean(success),
+        "token_totals": token_totals,
+    }
+
+
+def write_benchmark_summary(args, result_dir: Path, task_ids: list[int]) -> Path:
+    summary = summarize_benchmark_results(result_dir, task_ids)
+    summary.update(
+        {
+            "benchmark": getattr(args, "benchmark", None),
+            "chat_model": getattr(args, "chat_model", None),
+            "embedding_model": getattr(args, "embedding_model", None),
+            "start_idx": min(task_ids) if task_ids else None,
+            "end_idx": max(task_ids) + 1 if task_ids else None,
+        }
+    )
+
+    summary_path = result_dir / "summary.json"
+    summary_path.write_text(json.dumps(summary, indent=2))
+    logger.info("Benchmark summary written to %s", summary_path)
+    logger.info(
+        "Summary: examples=%s element_acc=%.4f action_f1=%.4f step_success=%.4f success_rate=%.4f",
+        summary["num_examples"],
+        summary["element_acc"],
+        summary["action_f1"],
+        summary["step_success"],
+        summary["success_rate"],
+    )
+    return summary_path
+
+
 ensure_logger_handler()
 
 
@@ -88,8 +161,10 @@ def main():
 
     if args.end_idx is None:
         args.end_idx = len(samples)
-    for i in tqdm(range(args.start_idx, args.end_idx)):
+    task_ids = list(range(args.start_idx, args.end_idx))
+    for i in tqdm(task_ids):
         eval_sample(i, args, samples[i])
+    write_benchmark_summary(args, get_mind2web_log_dir(args), task_ids)
 
 
 if __name__ == "__main__":
