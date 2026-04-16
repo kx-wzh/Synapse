@@ -16,6 +16,16 @@ class LlmUtilsTests(unittest.TestCase):
     def test_default_ollama_api_base_constant(self):
         self.assertEqual(DEFAULT_OLLAMA_API_BASE, "http://localhost:11434/v1")
 
+    def test_build_openai_compatible_client_initializes_real_client(self):
+        client = build_openai_compatible_client(
+            api_base=DEFAULT_OLLAMA_API_BASE,
+            api_key="ollama",
+        )
+        try:
+            self.assertIsNotNone(client.chat)
+        finally:
+            client.close()
+
     def test_slugify_model_name_replaces_provider_separators(self):
         self.assertEqual(slugify_model_name("qwen3.5:9b"), "qwen3.5-9b")
         self.assertEqual(
