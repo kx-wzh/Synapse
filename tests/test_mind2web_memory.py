@@ -58,6 +58,33 @@ class Mind2WebMemoryTests(unittest.TestCase):
 
     @patch("synapse.memory.mind2web.build_memory.FAISS")
     @patch("synapse.memory.mind2web.build_memory.OpenAICompatibleEmbeddings")
+    def test_load_memory_raises_clear_guidance_when_faiss_is_incompatible(
+        self, embedding_cls, faiss_cls
+    ):
+        embedding_cls.return_value = Mock()
+        faiss_cls.load_local.side_effect = ImportError(
+            "Could not import faiss python package. "
+            "No module named 'numpy._core'"
+        )
+
+        with self.assertRaisesRegex(
+            ImportError,
+            "FAISS could not be imported because the installed "
+            "faiss/numpy combination is incompatible",
+        ) as ctx:
+            load_memory(
+                memory_path="/tmp/memory",
+                embedding_model="qwen3-embedding:0.6b",
+                api_base="http://localhost:11434/v1",
+            )
+
+        self.assertIn(
+            "pip install --force-reinstall \"faiss-cpu==1.7.4\"",
+            str(ctx.exception),
+        )
+
+    @patch("synapse.memory.mind2web.build_memory.FAISS")
+    @patch("synapse.memory.mind2web.build_memory.OpenAICompatibleEmbeddings")
     @patch("synapse.memory.mind2web.build_memory.get_top_k_obs")
     @patch("synapse.memory.mind2web.build_memory.get_target_obs_and_act")
     @patch("synapse.memory.mind2web.build_memory.load_json")
@@ -110,6 +137,67 @@ class Mind2WebMemoryTests(unittest.TestCase):
             self.assertTrue(os.path.isdir(memory_path))
             self.assertTrue(os.path.exists(os.path.join(memory_path, "exemplars.json")))
             self.assertTrue(os.path.exists(os.path.join(memory_path, "memory_meta.json")))
+
+    @patch("synapse.memory.mind2web.build_memory.FAISS")
+    @patch("synapse.memory.mind2web.build_memory.OpenAICompatibleEmbeddings")
+    @patch("synapse.memory.mind2web.build_memory.get_top_k_obs")
+    @patch("synapse.memory.mind2web.build_memory.get_target_obs_and_act")
+    @patch("synapse.memory.mind2web.build_memory.load_json")
+    def test_build_memory_raises_clear_guidance_when_faiss_is_incompatible(
+        self,
+        load_json_mock,
+        get_target_obs_and_act_mock,
+        get_top_k_obs_mock,
+        embedding_cls,
+        faiss_cls,
+    ):
+        sample = {
+            "website": "website",
+            "domain": "domain",
+            "subdomain": "subdomain",
+            "confirmed_task": "task",
+            "annotation_id": "annotation",
+            "actions": [
+                {
+                    "action_uid": "action",
+                    "pos_candidates": [{"backend_node_id": "candidate"}],
+                    "neg_candidates": [],
+                }
+            ],
+            "action_reprs": ["click button"],
+        }
+        load_json_mock.return_value = [sample]
+        get_target_obs_and_act_mock.return_value = ("obs", "target action")
+        get_top_k_obs_mock.return_value = ("top-k obs", None)
+        embedding_cls.return_value = Mock()
+        faiss_cls.from_texts.side_effect = ImportError(
+            "Could not import faiss python package. "
+            "No module named 'numpy._core'"
+        )
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            data_dir = os.path.join(tmpdir, "data")
+            os.makedirs(data_dir, exist_ok=True)
+            with open(os.path.join(data_dir, "scores_all_data.pkl"), "wb") as handle:
+                pickle.dump(
+                    {
+                        "scores": {"annotation_action": {"candidate": 1.0}},
+                        "ranks": {"annotation_action": {"candidate": 1}},
+                    },
+                    handle,
+                )
+
+            with self.assertRaisesRegex(
+                ImportError,
+                "FAISS could not be imported because the installed "
+                "faiss/numpy combination is incompatible",
+            ) as ctx:
+                build_memory(memory_path=os.path.join(tmpdir, "memory"), data_dir=data_dir)
+
+        self.assertIn(
+            "pip install --force-reinstall \"faiss-cpu==1.7.4\"",
+            str(ctx.exception),
+        )
 
     def test_retrieve_exemplar_name_annotation_uses_integer_indices(self):
         self.assertEqual(

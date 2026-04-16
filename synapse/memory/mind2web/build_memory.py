@@ -14,6 +14,18 @@ from synapse.envs.mind2web.env_utils import (
 from synapse.utils.embeddings import OpenAICompatibleEmbeddings
 
 
+def _raise_clear_faiss_import_error(exc: ImportError) -> None:
+    message = str(exc)
+    if "numpy._core" in message:
+        raise ImportError(
+            "FAISS could not be imported because the installed faiss/numpy "
+            "combination is incompatible. The current faiss package expects "
+            "`numpy._core`, but this project pins NumPy 1.x. "
+            'Fix the environment with: pip install --force-reinstall "faiss-cpu==1.7.4"'
+        ) from exc
+    raise exc
+
+
 def get_specifiers_from_sample(sample: dict) -> str:
     website = sample["website"]
     domain = sample["domain"]
@@ -104,11 +116,14 @@ def build_memory(
         api_key=api_key,
     )
     metadatas = [{"name": i} for i in range(len(specifiers))]
-    memory = FAISS.from_texts(
-        texts=specifiers,
-        embedding=embedding,
-        metadatas=metadatas,
-    )
+    try:
+        memory = FAISS.from_texts(
+            texts=specifiers,
+            embedding=embedding,
+            metadatas=metadatas,
+        )
+    except ImportError as exc:
+        _raise_clear_faiss_import_error(exc)
     memory.save_local(memory_path)
     save_memory_metadata(memory_path, embedding_model, api_base, top_k, len(exemplars))
 
@@ -135,6 +150,9 @@ def load_memory(
         api_base=api_base,
         api_key=api_key,
     )
-    memory = FAISS.load_local(memory_path, embedding)
+    try:
+        memory = FAISS.load_local(memory_path, embedding)
+    except ImportError as exc:
+        _raise_clear_faiss_import_error(exc)
 
     return memory
