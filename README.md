@@ -50,10 +50,14 @@ Mind2Web
 Use `build_memory.py` to setup the exemplar memory.
 ```bash
 python build_memory.py --env miniwob
-python build_memory.py --env mind2web --mind2web_data_dir path/to/Mind2Web/data
+python build_memory.py \
+  --env mind2web \
+  --mind2web_data_dir path/to/Mind2Web/data \
+  --embedding_model qwen3-embedding:0.6b \
+  --api_base http://localhost:11434/v1 \
+  --mind2web_top_k_elements 3
 ```
-The `memory` folder should contain the following two files:
-`index.faiss` and `index.pkl`.
+The Mind2Web memory folder now stores model-scoped FAISS indexes and metadata files.
 
 Run MiniWoB++ experiments:
 ```bash
@@ -61,11 +65,29 @@ python run_miniwob.py --env_name <subdomain> --seed 0 --num_episodes 50
 python run_miniwob.py --env_name <subdomain> --no_memory --no_filter --seed 0 --num_episodes 50
 ```
 
-Run Mind2Web experiments:
+Run Mind2Web experiments with Ollama:
 ```bash
-python run_mind2web.py --data_dir path/to/Mind2Web/data --benchmark {test_task/test_website/test_domain} --no_memory --no_trajectory
-python run_mind2web.py --data_dir path/to/Mind2Web/data --benchmark {test_task/test_website/test_domain} --no_memory
-python run_mind2web.py --data_dir path/to/Mind2Web/data --benchmark {test_task/test_website/test_domain}
+ollama pull qwen3.5:4b
+ollama pull qwen3.5:9b
+ollama pull qwen3-embedding:0.6b
+
+python run_mind2web.py \
+  --data_dir path/to/Mind2Web/data \
+  --benchmark test_task \
+  --chat_model qwen3.5:4b \
+  --embedding_model qwen3-embedding:0.6b \
+  --api_base http://localhost:11434/v1 \
+  --max_context_tokens 32768 \
+  --no_memory \
+  --no_trajectory
+
+python run_mind2web.py \
+  --data_dir path/to/Mind2Web/data \
+  --benchmark test_domain \
+  --chat_model qwen3.5:9b \
+  --embedding_model qwen3-embedding:0.6b \
+  --api_base http://localhost:11434/v1 \
+  --max_context_tokens 32768
 ```
 
 ## Results
