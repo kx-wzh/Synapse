@@ -3,6 +3,7 @@ import numpy as np
 import json
 import os
 import random
+import re
 from pathlib import Path
 
 from synapse.envs.mind2web.env_utils import (
@@ -17,6 +18,7 @@ from synapse.utils.llm import (
     num_tokens_from_messages,
     MAX_TOKENS,
     extract_from_response,
+    slugify_model_name,
 )
 from synapse.memory.mind2web.build_memory import (
     load_memory,
@@ -25,6 +27,82 @@ from synapse.memory.mind2web.build_memory import (
 )
 
 logger = logging.getLogger(__name__)
+
+ACTION_RE_PATTERN = re.compile(
+    r"(CLICK|SELECT|TYPE)\s*\[(.+?)\](?:\s*\[(.+?)\])?",
+    re.DOTALL,
+)
+
+
+def _resolve_chat_model(args) -> str:
+    chat_model = getattr(args, "chat_model", None) or getattr(args, "model", None)
+    if not chat_model:
+        raise ValueError("Mind2Web agent requires `args.chat_model` or `args.model`.")
+    return chat_model
+
+
+def _resolve_embedding_model(args) -> str:
+    return getattr(args, "embedding_model", "qwen3-embedding:0.6b")
+
+
+def _resolve_context_limit(args, chat_model: str) -> int:
+    max_context_tokens = getattr(args, "max_context_tokens", None)
+    if max_context_tokens is not None:
+        return max_context_tokens
+    if chat_model in MAX_TOKENS:
+        return MAX_TOKENS[chat_model]
+    return max(MAX_TOKENS.values()) if MAX_TOKENS else 32768
+
+
+def normalize_action_response(response: str) -> str:
+    pred_act = extract_from_response(response, "`").strip()
+    if pred_act:
+        return pred_act
+
+    cleaned = response.replace("</s>", " ").strip()
+    match = ACTION_RE_PATTERN.search(cleaned)
+    if not match:
+        return cleaned
+
+    op, target_id, target_value = match.groups()
+    normalized = f"{op} [{target_id}]"
+    if target_value:
+        normalized += f" [{target_value}]"
+    return normalized
+
+
+def get_mind2web_log_dir(args) -> Path:
+    model_slug = slugify_model_name(_resolve_chat_model(args))
+    if getattr(args, "no_trajectory", False):
+        mode = "no_mem_no_traj"
+    elif getattr(args, "no_memory", False):
+        mode = "no_mem"
+    else:
+        mode = "with_memory"
+    return Path(args.log_dir) / model_slug / args.benchmark / mode
+
+
+def build_response_record(
+    args,
+    message: list[dict[str, str]],
+    raw_response: str,
+    normalized_action: str,
+    info: dict[str, int],
+    error_type: str | None,
+) -> dict:
+    record = {
+        "input": message,
+        "output": raw_response,
+        "raw_response": raw_response,
+        "normalized_action": normalized_action,
+        "token_stats": info,
+        "chat_model": _resolve_chat_model(args),
+        "embedding_model": getattr(args, "embedding_model", None),
+        "api_base": getattr(args, "api_base", None),
+    }
+    if error_type:
+        record["error_type"] = error_type
+    return record
 
 
 def eval_sample(task_id, args, sample):
@@ -36,6 +114,9 @@ def eval_sample(task_id, args, sample):
     token_stats = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
     conversation = []
     episode_length = len(sample["action_reprs"])
+    chat_model = _resolve_chat_model(args)
+    embedding_model = _resolve_embedding_model(args)
+    context_limit = _resolve_context_limit(args, chat_model)
 
     if args.no_trajectory:
         assert args.no_memory
@@ -63,7 +144,12 @@ def eval_sample(task_id, args, sample):
             ],
         ]
     else:
-        memory = load_memory(args.memory_path)
+        memory = load_memory(
+            args.memory_path,
+            embedding_model=embedding_model,
+            api_base=getattr(args, "api_base", None),
+            api_key=getattr(args, "api_key", None),
+        )
         with open(os.path.join(args.memory_path, "exemplars.json"), "r") as f:
             memory_mapping = json.load(f)
         if not args.no_memory:
@@ -101,7 +187,20 @@ def eval_sample(task_id, args, sample):
                 action_f1.append(0)
                 step_success.append(0)
                 prev_actions.append(act_repr)
-                conversation.append("The ground truth element is not in cleaned html")
+                conversation.append(
+                    build_response_record(
+                        args=args,
+                        message=[],
+                        raw_response="The ground truth element is not in cleaned html",
+                        normalized_action="",
+                        info={
+                            "prompt_tokens": 0,
+                            "completion_tokens": 0,
+                            "total_tokens": 0,
+                        },
+                        error_type="ground_truth_not_in_cleaned_html",
+                    )
+                )
                 continue
 
             obs, _ = get_top_k_obs(s, args.top_k_elements, use_raw=False)
@@ -123,7 +222,20 @@ def eval_sample(task_id, args, sample):
                 step_success.append(0)
                 prev_obs.append("Observation: `" + target_obs + "`")
                 prev_actions.append("Action: `" + target_act + "` (" + act_repr + ")")
-                conversation.append("The ground truth element is not in cleaned html")
+                conversation.append(
+                    build_response_record(
+                        args=args,
+                        message=[],
+                        raw_response="The ground truth element is not in cleaned html",
+                        normalized_action="",
+                        info={
+                            "prompt_tokens": 0,
+                            "completion_tokens": 0,
+                            "total_tokens": 0,
+                        },
+                        error_type="ground_truth_not_in_cleaned_html",
+                    )
+                )
                 continue
 
             query = []
@@ -155,28 +267,36 @@ def eval_sample(task_id, args, sample):
             prev_obs.append("Observation: `" + target_obs + "`")
             prev_actions.append("Action: `" + target_act + "` (" + act_repr + ")")
 
-        total_num_tokens = num_tokens_from_messages(sys_message + query, args.model)
-        if total_num_tokens > MAX_TOKENS[args.model]:
+        total_num_tokens = num_tokens_from_messages(sys_message + query, chat_model)
+        if total_num_tokens > context_limit:
             logger.info(
-                f"Too many tokens in acting ({total_num_tokens} / {MAX_TOKENS[args.model]}), skipping..."
+                f"Too many tokens in acting ({total_num_tokens} / {context_limit}), skipping..."
             )
             element_acc.append(0)
             action_f1.append(0)
             step_success.append(0)
             conversation.append(
-                {
-                    "input": sys_message + query,
-                    "output": f"FAILED DUE TO THE CONTEXT LIMIT: {total_num_tokens}",
-                }
+                build_response_record(
+                    args=args,
+                    message=sys_message + query,
+                    raw_response=f"FAILED DUE TO THE CONTEXT LIMIT: {total_num_tokens}",
+                    normalized_action="",
+                    info={
+                        "prompt_tokens": total_num_tokens,
+                        "completion_tokens": 0,
+                        "total_tokens": total_num_tokens,
+                    },
+                    error_type="context_limit_exceeded",
+                )
             )
             continue
 
         demo_message = []
         for e_id, e in enumerate(exemplars):
             total_num_tokens = num_tokens_from_messages(
-                sys_message + demo_message + e + query, args.model
+                sys_message + demo_message + e + query, chat_model
             )
-            if total_num_tokens > MAX_TOKENS[args.model]:
+            if total_num_tokens > context_limit:
                 logger.info(
                     f"Using {e_id} / {len(exemplars)} exemplars due to context limit"
                 )
@@ -187,15 +307,31 @@ def eval_sample(task_id, args, sample):
         message = sys_message + demo_message + query
         response, info = generate_response(
             messages=message,
-            model=args.model,
+            model=chat_model,
             temperature=args.temperature,
+            api_base=getattr(args, "api_base", None),
+            api_key=getattr(args, "api_key", None),
             stop_tokens=["Task:", "obs:"],
         )
-        conversation.append({"input": message, "output": response, "token_stats": info})
+        pred_act = normalize_action_response(response)
+        pred_op, pred_id, pred_val = parse_act_str(pred_act)
+        error_type = (
+            None
+            if pred_op is not None and pred_id is not None
+            else "invalid_action_format"
+        )
+        conversation.append(
+            build_response_record(
+                args=args,
+                message=message,
+                raw_response=response,
+                normalized_action=pred_act,
+                info=info,
+                error_type=error_type,
+            )
+        )
         for k, v in info.items():
             token_stats[k] += v
-        pred_act = extract_from_response(response, "`")
-        pred_op, pred_id, pred_val = parse_act_str(pred_act)
         target_op, _, target_val = parse_act_str(target_act)
 
         # calculate metrics
@@ -228,14 +364,10 @@ def eval_sample(task_id, args, sample):
             "action_f1": action_f1,
             "step_success": step_success,
             "success": success,
+            "token_stats": token_stats,
         }
     )
-    if args.no_trajectory:
-        log_dir = Path(f"{args.log_dir}/{args.model}/{args.benchmark}/no_mem_no_traj")
-    else:
-        log_dir = Path(
-            f"{args.log_dir}/{args.model}/{args.benchmark}{'/no_mem' if args.no_memory else ''}"
-        )
+    log_dir = get_mind2web_log_dir(args)
     log_dir.mkdir(parents=True, exist_ok=True)
     with open(os.path.join(log_dir, f"{task_id}.json"), "w") as f:
         json.dump(conversation, f, indent=2)
@@ -280,7 +412,12 @@ def eval_sample_llama(
                 ],
             ]
     else:
-        memory = load_memory(args.memory_path)
+        memory = load_memory(
+            args.memory_path,
+            embedding_model=_resolve_embedding_model(args),
+            api_base=getattr(args, "api_base", None),
+            api_key=getattr(args, "api_key", None),
+        )
         with open(os.path.join(args.memory_path, "exemplars.json"), "r") as f:
             memory_mapping = json.load(f)
         if not args.no_memory:
