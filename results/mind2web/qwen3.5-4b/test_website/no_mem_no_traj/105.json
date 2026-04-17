@@ -1,0 +1,198 @@
+[
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div banner> <div> <form search> </form> <button id=26685 search product> </button> <div menubar search hint> <div id=26689 menuitem> <strong> devin </strong> <strong> booker </strong> </div> <div id=26694 menuitem> <strong> devin </strong> <strong> booker </strong> jerseys </div> <div menuitem> nike </div> <div menuitem> swingman </div> <div menuitem> jordan brand </div> </div> </div> </div> <div> <p> Get ready for the intensity of the 2023 Playoffs with like T-Shirts and Hats from store.nba.com. You can celebrate your team and your city with the new at NBA Store and rep your team in style! In addition to our NBA shop featuring tons of NBA gear <a> NBA Trading Cards </a> and celebrate your team's roster. Take another opportunity to show off some player pride with the new <a> NBA Starting Lineup Figures from Hasbro </a> for top NBA players here at store.nba.com. Another of our hottest items this winter is our <a> NBA Gift Box </a> featuring great team gear for the cold weather. We offer tons of favorites like <a id=29428> NBA Jerseys </a> , <a> T-shirts </a> , <a> Hoodies </a> , <a> Hats </a> and . We also offer NBA for your favorite players. Show some support for your favorite b-ball brands while being proud to shop minority-owned business and featuring brands like Fathead, Pro Standard and Rastaclat. The NBA Store features a wide variety of collectibles and autographed memorabilia is a great solution. Check out our for some of our most popular options, and be sure to check out NBA clearance apparel and our to get the most bang for your buck. </p> <p> | | | | | <a> Ja Morant Jerseys </a> | <a> Jayson Tatum Jerseys </a> | <a> Kevin Durant Jerseys </a> | <a id=29486> Devin Booker </a> | <a> Ben Simmons </a> | <a> James Harden Jerseys </a> | <a> Russell Westbrook Jerseys </a> | | | | | | | | | | | | | | | | | | | | </p> </div> </div> </html>\n```\nTask: Find a medium Devin Booker jersey and add it to the shopping cart.\nPrevious actions:\n[link]  Store -> CLICK\n[textbox]  Search -> TYPE: Devin Booker\nNext action:"
+      }
+    ],
+    "output": "`CLICK [29486]`",
+    "raw_response": "`CLICK [29486]`",
+    "normalized_action": "CLICK [29486]",
+    "token_stats": {
+      "prompt_tokens": 1364,
+      "completion_tokens": 221,
+      "total_tokens": 1585
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [29486]",
+    "target_act": "CLICK [26689]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <header> <div banner> <div> <form search> <input id=48570 text search /> </form> <button id=48572 search product> </button> </div> </div> <nav navigation across the content site:> <ul menu> <a id=48858 button jerseys> jerseys </a> </ul> </nav> </header> <div> <button id=49404> <span> Add to Cart </span> </button> <a> 90-Day Returns </a> </div> <svg id=50849 img discover /> </div> </html>\n```\nTask: Find a medium Devin Booker jersey and add it to the shopping cart.\nPrevious actions:\n[link]  Store -> CLICK\n[textbox]  Search -> TYPE: Devin Booker\n[menuitem]  devin booker -> CLICK\n[img]   -> CLICK\n[radio]  Size M -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`CLICK [49404]`",
+    "raw_response": "`CLICK [49404]`",
+    "normalized_action": "CLICK [49404]",
+    "token_stats": {
+      "prompt_tokens": 992,
+      "completion_tokens": 126,
+      "total_tokens": 1118
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [49404]",
+    "target_act": "CLICK [49404]"
+  },
+  {
+    "element_acc": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "action_f1": [
+      0,
+      0,
+      1.0,
+      0,
+      0,
+      1.0
+    ],
+    "step_success": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "success": [
+      0
+    ],
+    "token_stats": {
+      "prompt_tokens": 2356,
+      "completion_tokens": 347,
+      "total_tokens": 2703
+    }
+  }
+]

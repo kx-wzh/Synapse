@@ -1,0 +1,252 @@
+[
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a id=567> <li-icon img linkedin /> </a> <input id=74 combobox text search /> <nav primary navigation> </nav> </div> <div> <main main feed> <button id=1130 button> <div> <span> Sort by: </span> <span> Top </span> <svg id=1142 img sort order dropdown button /> </div> </button> </main> <aside linkedin news> <footer linkedin footer content> <a id=2781> <span> Help Center </span> </a> </footer> </aside> </div> </div> </html>\n```\nTask: Find LinkedIn Learning page and subscribe for the newsletter.\nPrevious actions:\nNone\nNext action:"
+      }
+    ],
+    "output": "`TYPE [74] [LinkedIn Learning]`",
+    "raw_response": "`TYPE [74] [LinkedIn Learning]`",
+    "normalized_action": "TYPE [74] [LinkedIn Learning]",
+    "token_stats": {
+      "prompt_tokens": 950,
+      "completion_tokens": 233,
+      "total_tokens": 1183
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [74] [LinkedIn Learning]",
+    "target_act": "CLICK [74]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a id=7335> <li-icon img linkedin /> </a> <div> <input id=6842 combobox text search /> <div recent> </div> </div> <nav primary navigation> </nav> </div> <div> <a id=7993> Discover more </a> <main main feed> <button id=8077 button> <div> <span> Sort by: </span> <span> Top </span> <svg id=8089 img sort order dropdown button /> </div> </button> </main> </div> </div> </html>\n```\nTask: Find LinkedIn Learning page and subscribe for the newsletter.\nPrevious actions:\n[combobox]  Search -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`TYPE [6842] [LinkedIn Learning]`",
+    "raw_response": "`TYPE [6842] [LinkedIn Learning]`",
+    "normalized_action": "TYPE [6842] [LinkedIn Learning]",
+    "token_stats": {
+      "prompt_tokens": 948,
+      "completion_tokens": 159,
+      "total_tokens": 1107
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [6842] [LinkedIn Learning]",
+    "target_act": "TYPE [6842] [Linkedin learning]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a id=14400> <li-icon img linkedin /> </a> <div> <input id=14423 combobox text search linkedin learning /> <div listbox search suggestions> <div> <div id=14440 option> <div> <span> linkedin learning </span> <li-icon search /> </div> </div> <div option> </div> <div option> </div> <div option> </div> </div> </div> </div> <nav primary navigation> </nav> </div> <div> <a id=15096> Discover more </a> <main main feed> <button button> <div> <span> Sort by: </span> <span> Top </span> <svg id=15192 img sort order dropdown button /> </div> </button> </main> </div> </div> </html>\n```\nTask: Find LinkedIn Learning page and subscribe for the newsletter.\nPrevious actions:\n[combobox]  Search -> CLICK\n[combobox]  Search -> TYPE: Linkedin learning\nNext action:"
+      }
+    ],
+    "output": "`CLICK [14440]`",
+    "raw_response": "`CLICK [14440]`",
+    "normalized_action": "CLICK [14440]",
+    "token_stats": {
+      "prompt_tokens": 1025,
+      "completion_tokens": 144,
+      "total_tokens": 1169
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [14440]",
+    "target_act": "CLICK [14440]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <input id=27554 combobox text search /> <main organization page for linkedin learning> <div> <span> technology and more, helping them get closer to achieving their professional goals. Learn the <span> <div> ... </div> <a id=28022 button expands text content to show> <span> see more </span> </a> </span> </span> <div> <a go to learn this next> </a> <button id=28097 subscribe to learn this next> <li-icon add /> <span> Subscribe </span> </button> </div> <span> Its simple. When your skills are in demand, youre in demand. Learn what employers are looking for most with 2023s <a id=28319> https://lnkd.in/2023MostInDemandSkills </a> </span> </div> </main> <div> <button id=29567 button> <span> <span> Messaging </span> <span> You are on the messaging overlay. Press enter to open the list of conversations. </span> </span> </button> <abbr you have 3 unseen messages> 3 </abbr> </div> </div> </html>\n```\nTask: Find LinkedIn Learning page and subscribe for the newsletter.\nPrevious actions:\n[combobox]  Search -> CLICK\n[combobox]  Search -> TYPE: Linkedin learning\n[option]  linkedin learning -> CLICK\n[link]  LinkedIn Learning -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`CLICK [28097]`",
+    "raw_response": "`CLICK [28097]`",
+    "normalized_action": "CLICK [28097]",
+    "token_stats": {
+      "prompt_tokens": 1114,
+      "completion_tokens": 95,
+      "total_tokens": 1209
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [28097]",
+    "target_act": "CLICK [28097]"
+  },
+  {
+    "element_acc": [
+      1,
+      1,
+      1,
+      0,
+      1
+    ],
+    "action_f1": [
+      0,
+      0.3333333333333333,
+      1.0,
+      0,
+      1.0
+    ],
+    "step_success": [
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    "success": [
+      0
+    ],
+    "token_stats": {
+      "prompt_tokens": 4037,
+      "completion_tokens": 631,
+      "total_tokens": 4668
+    }
+  }
+]

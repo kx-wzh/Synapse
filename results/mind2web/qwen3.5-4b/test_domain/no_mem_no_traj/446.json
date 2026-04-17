@@ -1,0 +1,144 @@
+[
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <label> <input id=1284 text search stocktwits desktopsearch search companies, crypto, nfts and /> <svg img /> </label> <a id=286> Earnings </a> </div> <div> <ul tablist> <li tab> <div> <div> Suggested </div> <svg id=1589 img /> </div> </li> </ul> <div> <button button> <svg id=3521 img /> </button> <div> <div> Most Active </div> <a id=3901> View <svg img /> </a> </div> </div> </div> </div> </html>\n```\nTask: Search for the Earnings taking place on Thurday, March 23, 2023.\nPrevious actions:\nNone\nNext action:"
+      }
+    ],
+    "output": "`TYPE [1284] [Earnings Thursday March 23 2023]`",
+    "raw_response": "`TYPE [1284] [Earnings Thursday March 23 2023]`",
+    "normalized_action": "TYPE [1284] [Earnings Thursday March 23 2023]",
+    "token_stats": {
+      "prompt_tokens": 969,
+      "completion_tokens": 155,
+      "total_tokens": 1124
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [1284] [Earnings Thursday March 23 2023]",
+    "target_act": "CLICK [286]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <label> <input id=19257 text search stocktwits desktopsearch search companies, crypto, nfts and /> <svg img /> </label> <div> <header> <select id=19524> <option> Choose Date </option> <option 1672617600000> 2023-01-02 </option> <option 1673222400000> 2023-01-09 </option> <option 1673827200000> 2023-01-16 </option> <option 1674432000000> 2023-01-23 </option> <option 1675036800000> 2023-01-30 </option> <option 1675641600000> 2023-02-06 </option> <option 1676246400000> 2023-02-13 </option> <option 1676851200000> 2023-02-20 </option> <option 1677456000000> 2023-02-27 </option> <option 1678060800000> 2023-03-06 </option> <option 1678665600000 true> 2023-03-13 </option> <option 1679270400000> 2023-03-20 </option> <option 1679875200000> 2023-03-27 </option> <option 1680480000000> 2023-04-03 </option> <option 1681084800000> 2023-04-10 </option> <option 1681689600000> 2023-04-17 </option> <option 1682294400000> 2023-04-24 </option> <option 1682899200000> 2023-05-01 </option> <option 1683504000000> 2023-05-08 </option> <option 1684108800000> 2023-05-15 </option> <option 1684713600000> 2023-05-22 </option> <option 1685318400000> 2023-05-29 </option> <option 1685923200000> 2023-06-05 </option> <option 1686528000000> 2023-06-12 </option> </select> <nav> <a previous week> </a> <a id=19636 next week> <svg img> </svg> </a> <h2> March 2023 </h2> </nav> <div> <p id=19684> 23 </p> <p> GIS, MOV, FDS and 40 more stocks reporting earnings Thursday </p> </div> </header> <div grid> <div rowgroup grid> <div rowgroup> <div row> <div gridcell> <button button> <svg id=19777 img /> </button> </div> </div> </div> </div> </div> </div> </div> </html>\n```\nTask: Search for the Earnings taking place on Thurday, March 23, 2023.\nPrevious actions:\n[link]  Earnings -> CLICK\n[path]   -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`SELECT [19524] [2023-01-03]`",
+    "raw_response": "`SELECT [19524] [2023-01-03]`",
+    "normalized_action": "SELECT [19524] [2023-01-03]",
+    "token_stats": {
+      "prompt_tokens": 1793,
+      "completion_tokens": 504,
+      "total_tokens": 2297
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "SELECT [19524] [2023-01-03]",
+    "target_act": "CLICK [19684]"
+  },
+  {
+    "element_acc": [
+      0,
+      0,
+      0
+    ],
+    "action_f1": [
+      0,
+      0,
+      0
+    ],
+    "step_success": [
+      0,
+      0,
+      0
+    ],
+    "success": [
+      0
+    ],
+    "token_stats": {
+      "prompt_tokens": 2762,
+      "completion_tokens": 659,
+      "total_tokens": 3421
+    }
+  }
+]

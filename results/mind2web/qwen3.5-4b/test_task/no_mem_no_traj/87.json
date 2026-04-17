@@ -1,0 +1,162 @@
+[
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <input id=17539 text search for books by keyword searchterm /> <input search find book /> <button submit search> </button> </div> <form> <div> <label id=18376> Author </label> <input id=17336 text searchauthor /> </div> <div> <label id=18413> Language </label> <select id=18416 searchlang> <option all true> All </option> <option english 123> English </option> <option french 137> French </option> <option spanish 404> Spanish </option> <option german 150> German </option> <option latin 246> Latin </option> <option italian 202> Italian </option> <option chinese 79> Chinese </option> <option russian 365> Russian </option> <option japanese 205> Japanese </option> <option dutch; flemish 116> Dutch; Flemish </option> <option abkhaz 2> Abkhaz </option> <option achinese 3> Achinese </option> <option acoli 4> Acoli </option> <option adangme 5> Adangme </option> <option adygei 6> Adygei </option> <option afar 1> Afar </option> <option afrihili (artificial language) 8> Afrihili (Artificial language) </option> <option afrikaans 9> Afrikaans </option> <option afroasiatic languages 7> Afroasiatic languages </option> <option ainu 10> Ainu </option> <option akan 11> Akan </option> <option akkadian 12> Akkadian </option> <option albanian 13> Albanian </option> <option aleut 14> Aleut </option> </select> </div> </form> </div> </html>\n```\nTask: Browse books by author Stephen King in German.\nPrevious actions:\n[link]  Advanced Search -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`TYPE [17336] [Stephen King]`",
+    "raw_response": "`TYPE [17336] [Stephen King]`",
+    "normalized_action": "TYPE [17336] [Stephen King]",
+    "token_stats": {
+      "prompt_tokens": 1259,
+      "completion_tokens": 234,
+      "total_tokens": 1493
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [17336] [Stephen King]",
+    "target_act": "TYPE [17336] [Stephen King]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <input id=24759 text search for books by keyword searchterm /> <input search find book /> <button submit search> </button> </div> <form> <div> <div> <label> Title </label> <input id=25588 text searchtitle /> </div> <div> <label> Author </label> <input id=25599 text searchauthor stephen king /> </div> </div> <div> <label id=25634> Language </label> <select id=24556 searchlang> <option all true> All </option> <option english 123> English </option> <option french 137> French </option> <option spanish 404> Spanish </option> <option german 150> German </option> <option latin 246> Latin </option> <option italian 202> Italian </option> <option chinese 79> Chinese </option> <option russian 365> Russian </option> <option japanese 205> Japanese </option> <option dutch; flemish 116> Dutch; Flemish </option> <option abkhaz 2> Abkhaz </option> <option achinese 3> Achinese </option> <option acoli 4> Acoli </option> <option adangme 5> Adangme </option> <option adygei 6> Adygei </option> <option afar 1> Afar </option> <option afrihili (artificial language) 8> Afrihili (Artificial language) </option> <option afrikaans 9> Afrikaans </option> <option afroasiatic languages 7> Afroasiatic languages </option> <option ainu 10> Ainu </option> <option akan 11> Akan </option> <option akkadian 12> Akkadian </option> <option albanian 13> Albanian </option> <option aleut 14> Aleut </option> </select> </div> </form> </div> </html>\n```\nTask: Browse books by author Stephen King in German.\nPrevious actions:\n[link]  Advanced Search -> CLICK\n[input]   -> TYPE: Stephen King\nNext action:"
+      }
+    ],
+    "output": "`SELECT [24556] [German]`",
+    "raw_response": "`SELECT [24556] [German]`",
+    "normalized_action": "SELECT [24556] [German]",
+    "token_stats": {
+      "prompt_tokens": 1296,
+      "completion_tokens": 192,
+      "total_tokens": 1488
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "SELECT [24556] [German]",
+    "target_act": "SELECT [24556] [German]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "element_acc": [
+      0,
+      1,
+      1,
+      0
+    ],
+    "action_f1": [
+      0,
+      1.0,
+      1.0,
+      0
+    ],
+    "step_success": [
+      0,
+      1,
+      1,
+      0
+    ],
+    "success": [
+      0
+    ],
+    "token_stats": {
+      "prompt_tokens": 2555,
+      "completion_tokens": 426,
+      "total_tokens": 2981
+    }
+  }
+]

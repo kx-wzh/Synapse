@@ -1,0 +1,504 @@
+[
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a id=8246> <p> Job Skills of 2023 </p> <p> Discover the fastest-growing human and digital skills of the year </p> </a> <a id=8407> <p> Campus Skills Report </p> <p> Understand which job skills students need to build high-growth careers. </p> </a> </div> <div> <div> <div> <h2> Prepare your students for in-demand jobs </h2> <a id=8577 button> <span> Learn more about Career Academy </span> </a> </div> <img id=8585 c4c career academy /> </div> <div> <h2> Advancing Higher Education with Industry Micro-Credentials </h2> <p> Discover why micro-credentials are driving job outcomes for students globally, and learn how higher ed leaders can help close the </p> <a id=8722> Get the report </a> </div> </div> </div> </html>\n```\nTask: Apply to get the Job Skills of 2023 Report eBook. Name: John Doe, Job: Accounting, Email: Johndoe@gmail.com, Phone number: 234567890, Institution: University of Michigan, Primary Discipline: Accountin\ng\nPrevious actions:\n[link]  For Universities -> CLICK\n[link]  Resources -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`CLICK [8722]`",
+    "raw_response": "`CLICK [8722]`",
+    "normalized_action": "CLICK [8722]",
+    "token_stats": {
+      "prompt_tokens": 1096,
+      "completion_tokens": 350,
+      "total_tokens": 1446
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [8722]",
+    "target_act": "CLICK [8246]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form> <div> <label> Job Title </label> <input id=15674 text title job title /> </div> <div> <label> Institution Name </label> <input id=15948 text company institution name /> </div> <div> <label> Primary Discipline </label> <select id=15962> <option true> Select... </option> <option accounting> Accounting </option> <option engineering> Aeronautical/Aerospace Engineering </option> <option architecture> Architecture </option> <option biochemical> Biochemical Engineering/Biotechnology </option> <option biochemistry> Biochemistry </option> <option biotechnology> Biotechnology </option> <option business> Business </option> <option chemical engineering> Chemical Engineering </option> <option chemistry> Chemistry </option> <option civil engineering> Civil Engineering </option> <option communications> Communications </option> <option computer science> Computer Science </option> <option data learning> Data Science/Machine Learning </option> <option dental school> Dental School </option> <option economics> Economics </option> <option engineering> Electrical/Electronics Engineering </option> <option> Entrepreneurship </option> <option environmental science> Environmental Science </option> <option finance> Finance </option> <option fine & performing arts> Fine & Performing Arts </option> <option food sciences technology> Food Sciences Technology </option> <option history> History </option> <option human resources> Human Resources </option> <option information technology> Information Technology </option> </select> </div> <div> <label> Country </label> <select id=16060 country> <option true> Select... </option> <option united states> United States </option> <option canada> Canada </option> <option afghanistan> Afghanistan </option> <option land islands> land Islands </option> <option albania> Albania </option> <option algeria> Algeria </option> <option american samoa> American Samoa </option> <option andorra> Andorra </option> <option angola> Angola </option> <option anguilla> Anguilla </option> <option antarctica> Antarctica </option> <option antigua and barbuda> Antigua and Barbuda </option> <option argentina> Argentina </option> <option armenia> Armenia </option> <option aruba> Aruba </option> <option australia> Australia </option> <option austria> Austria </option> <option azerbaijan> Azerbaijan </option> <option bahamas> Bahamas </option> <option bahrain> Bahrain </option> <option bangladesh> Bangladesh </option> <option barbados> Barbados </option> <option belarus> Belarus </option> <option belgium> Belgium </option> </select> </div> <input/> <input/> <input c4c /> <button id=16624 submit> Submit </button> <input formid 1986 /> <input munchkinid 748-miv-116 /> </form> </html>\n```\nTask: Apply to get the Job Skills of 2023 Report eBook. Name: John Doe, Job: Accounting, Email: Johndoe@gmail.com, Phone number: 234567890, Institution: University of Michigan, Primary Discipline: Accountin\ng\nPrevious actions:\n[link]  For Universities -> CLICK\n[link]  Resources -> CLICK\n[link]  Job Skills of 2023 Discover the fastest-growing hu... -> CLICK\n[textbox]  * First Name -> TYPE: John\n[textbox]  * Last Name -> TYPE: Doe\nNext action:"
+      }
+    ],
+    "output": "`TYPE [15948] [University of Michigan]`",
+    "raw_response": "`TYPE [15948] [University of Michigan]`",
+    "normalized_action": "TYPE [15948] [University of Michigan]",
+    "token_stats": {
+      "prompt_tokens": 1568,
+      "completion_tokens": 330,
+      "total_tokens": 1898
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [15948] [University of Michigan]",
+    "target_act": "TYPE [15674] [Accounting]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form> <div> <label> Job Title </label> <input id=19106 text title job title accounting /> </div> <div> <label> Work Email Address: </label> <input id=18873 email work email address /> </div> <div> <label> Institution Name </label> <input id=19147 text company institution name /> </div> <div> <label> Primary Discipline </label> <select id=19161> <option true> Select... </option> <option accounting> Accounting </option> <option engineering> Aeronautical/Aerospace Engineering </option> <option architecture> Architecture </option> <option biochemical> Biochemical Engineering/Biotechnology </option> <option biochemistry> Biochemistry </option> <option biotechnology> Biotechnology </option> <option business> Business </option> <option chemical engineering> Chemical Engineering </option> <option chemistry> Chemistry </option> <option civil engineering> Civil Engineering </option> <option communications> Communications </option> <option computer science> Computer Science </option> <option data learning> Data Science/Machine Learning </option> <option dental school> Dental School </option> <option economics> Economics </option> <option engineering> Electrical/Electronics Engineering </option> <option> Entrepreneurship </option> <option environmental science> Environmental Science </option> <option finance> Finance </option> <option fine & performing arts> Fine & Performing Arts </option> <option food sciences technology> Food Sciences Technology </option> <option history> History </option> <option human resources> Human Resources </option> <option information technology> Information Technology </option> </select> </div> <input/> <input/> <input c4c /> <button id=19823 submit> Submit </button> <input formid 1986 /> <input munchkinid 748-miv-116 /> </form> </html>\n```\nTask: Apply to get the Job Skills of 2023 Report eBook. Name: John Doe, Job: Accounting, Email: Johndoe@gmail.com, Phone number: 234567890, Institution: University of Michigan, Primary Discipline: Accountin\ng\nPrevious actions:\n[link]  Resources -> CLICK\n[link]  Job Skills of 2023 Discover the fastest-growing hu... -> CLICK\n[textbox]  * First Name -> TYPE: John\n[textbox]  * Last Name -> TYPE: Doe\n[textbox]  * Job Title -> TYPE: Accounting\nNext action:"
+      }
+    ],
+    "output": "`TYPE [18873] Johndoe@gmail.com`",
+    "raw_response": "`TYPE [18873] Johndoe@gmail.com`",
+    "normalized_action": "TYPE [18873] Johndoe@gmail.com",
+    "token_stats": {
+      "prompt_tokens": 1333,
+      "completion_tokens": 191,
+      "total_tokens": 1524
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [18873] Johndoe@gmail.com",
+    "target_act": "TYPE [18873] [Johndoe@gmail.com]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form> <div> <label> Work Email Address: </label> <input id=22312 email work email address /> </div> <div> <label> Work Phone Number </label> <input id=22065 tel phone country code + phone number /> </div> <div> <label> Institution Name </label> <input id=22339 text company institution name /> </div> <div> <label> Primary Discipline </label> <select id=22353> <option true> Select... </option> <option accounting> Accounting </option> <option engineering> Aeronautical/Aerospace Engineering </option> <option architecture> Architecture </option> <option biochemical> Biochemical Engineering/Biotechnology </option> <option biochemistry> Biochemistry </option> <option biotechnology> Biotechnology </option> <option business> Business </option> <option chemical engineering> Chemical Engineering </option> <option chemistry> Chemistry </option> <option civil engineering> Civil Engineering </option> <option communications> Communications </option> <option computer science> Computer Science </option> <option data learning> Data Science/Machine Learning </option> <option dental school> Dental School </option> <option economics> Economics </option> <option engineering> Electrical/Electronics Engineering </option> <option> Entrepreneurship </option> <option environmental science> Environmental Science </option> <option finance> Finance </option> <option fine & performing arts> Fine & Performing Arts </option> <option food sciences technology> Food Sciences Technology </option> <option history> History </option> <option human resources> Human Resources </option> <option information technology> Information Technology </option> </select> </div> <input/> <input/> <input c4c /> <button id=23015 submit> Submit </button> <input formid 1986 /> <input munchkinid 748-miv-116 /> </form> </html>\n```\nTask: Apply to get the Job Skills of 2023 Report eBook. Name: John Doe, Job: Accounting, Email: Johndoe@gmail.com, Phone number: 234567890, Institution: University of Michigan, Primary Discipline: Accountin\ng\nPrevious actions:\n[link]  Job Skills of 2023 Discover the fastest-growing hu... -> CLICK\n[textbox]  * First Name -> TYPE: John\n[textbox]  * Last Name -> TYPE: Doe\n[textbox]  * Job Title -> TYPE: Accounting\n[textbox]  * Work Email Address: -> TYPE: Johndoe@gmail.com\nNext action:"
+      }
+    ],
+    "output": "`SELECT [22353] [Accounting]`",
+    "raw_response": "`SELECT [22353] [Accounting]`",
+    "normalized_action": "SELECT [22353] [Accounting]",
+    "token_stats": {
+      "prompt_tokens": 1346,
+      "completion_tokens": 250,
+      "total_tokens": 1596
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "SELECT [22353] [Accounting]",
+    "target_act": "TYPE [22065] [234567890]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <p id=25415> eBook </p> <h2> Job Skills of 2023 Report </h2> <p> Discover the fastest-growing job skills for businesses, governments, and higher education institutions. </p> </div> <form> <div> <label> Institution Name </label> <input id=25260 text company institution name /> </div> <div> <label> Primary Discipline </label> <select id=25548> <option true> Select... </option> <option accounting> Accounting </option> <option engineering> Aeronautical/Aerospace Engineering </option> <option architecture> Architecture </option> <option biochemical> Biochemical Engineering/Biotechnology </option> <option biochemistry> Biochemistry </option> <option biotechnology> Biotechnology </option> <option business> Business </option> <option chemical engineering> Chemical Engineering </option> <option chemistry> Chemistry </option> <option civil engineering> Civil Engineering </option> <option communications> Communications </option> <option computer science> Computer Science </option> <option data learning> Data Science/Machine Learning </option> <option dental school> Dental School </option> <option economics> Economics </option> <option engineering> Electrical/Electronics Engineering </option> <option> Entrepreneurship </option> <option environmental science> Environmental Science </option> <option finance> Finance </option> <option fine & performing arts> Fine & Performing Arts </option> <option food sciences technology> Food Sciences Technology </option> <option history> History </option> <option human resources> Human Resources </option> <option information technology> Information Technology </option> </select> </div> <div> <label> Country </label> <select id=25646 country> <option true> Select... </option> <option united states> United States </option> <option canada> Canada </option> <option afghanistan> Afghanistan </option> <option land islands> land Islands </option> <option albania> Albania </option> <option algeria> Algeria </option> <option american samoa> American Samoa </option> <option andorra> Andorra </option> <option angola> Angola </option> <option anguilla> Anguilla </option> <option antarctica> Antarctica </option> <option antigua and barbuda> Antigua and Barbuda </option> <option argentina> Argentina </option> <option armenia> Armenia </option> <option aruba> Aruba </option> <option australia> Australia </option> <option austria> Austria </option> <option azerbaijan> Azerbaijan </option> <option bahamas> Bahamas </option> <option bahrain> Bahrain </option> <option bangladesh> Bangladesh </option> <option barbados> Barbados </option> <option belarus> Belarus </option> <option belgium> Belgium </option> </select> </div> <input/> <input/> <input c4c /> <button id=26210 submit> Submit </button> <input formid 1986 /> <input munchkinid 748-miv-116 /> </form> </div> </html>\n```\nTask: Apply to get the Job Skills of 2023 Report eBook. Name: John Doe, Job: Accounting, Email: Johndoe@gmail.com, Phone number: 234567890, Institution: University of Michigan, Primary Discipline: Accountin\ng\nPrevious actions:\n[textbox]  * First Name -> TYPE: John\n[textbox]  * Last Name -> TYPE: Doe\n[textbox]  * Job Title -> TYPE: Accounting\n[textbox]  * Work Email Address: -> TYPE: Johndoe@gmail.com\n[textbox]  * Work Phone Number -> TYPE: 234567890\nNext action:"
+      }
+    ],
+    "output": "`TYPE [25260] [University of Michigan]`",
+    "raw_response": "`TYPE [25260] [University of Michigan]`",
+    "normalized_action": "TYPE [25260] [University of Michigan]",
+    "token_stats": {
+      "prompt_tokens": 1619,
+      "completion_tokens": 284,
+      "total_tokens": 1903
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [25260] [University of Michigan]",
+    "target_act": "TYPE [25260] [University of Michigan]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <p id=28612> eBook </p> <h2> Job Skills of 2023 Report </h2> <p> Discover the fastest-growing job skills for businesses, governments, and higher education institutions. </p> </div> <form> <div> <label> Job Title </label> <input id=28690 text title job title accounting /> </div> <div> <label> Primary Discipline </label> <select id=28457> <option true> Select... </option> <option accounting> Accounting </option> <option engineering> Aeronautical/Aerospace Engineering </option> <option architecture> Architecture </option> <option biochemical> Biochemical Engineering/Biotechnology </option> <option biochemistry> Biochemistry </option> <option biotechnology> Biotechnology </option> <option business> Business </option> <option chemical engineering> Chemical Engineering </option> <option chemistry> Chemistry </option> <option civil engineering> Civil Engineering </option> <option communications> Communications </option> <option computer science> Computer Science </option> <option data learning> Data Science/Machine Learning </option> <option dental school> Dental School </option> <option economics> Economics </option> <option engineering> Electrical/Electronics Engineering </option> <option> Entrepreneurship </option> <option environmental science> Environmental Science </option> <option finance> Finance </option> <option fine & performing arts> Fine & Performing Arts </option> <option food sciences technology> Food Sciences Technology </option> <option history> History </option> <option human resources> Human Resources </option> <option information technology> Information Technology </option> </select> </div> <div> <label> Country </label> <select id=28843 country> <option true> Select... </option> <option united states> United States </option> <option canada> Canada </option> <option afghanistan> Afghanistan </option> <option land islands> land Islands </option> <option albania> Albania </option> <option algeria> Algeria </option> <option american samoa> American Samoa </option> <option andorra> Andorra </option> <option angola> Angola </option> <option anguilla> Anguilla </option> <option antarctica> Antarctica </option> <option antigua and barbuda> Antigua and Barbuda </option> <option argentina> Argentina </option> <option armenia> Armenia </option> <option aruba> Aruba </option> <option australia> Australia </option> <option austria> Austria </option> <option azerbaijan> Azerbaijan </option> <option bahamas> Bahamas </option> <option bahrain> Bahrain </option> <option bangladesh> Bangladesh </option> <option barbados> Barbados </option> <option belarus> Belarus </option> <option belgium> Belgium </option> </select> </div> <input/> <input/> <input c4c /> <button id=29407 submit> Submit </button> <input formid 1986 /> <input munchkinid 748-miv-116 /> </form> </div> </html>\n```\nTask: Apply to get the Job Skills of 2023 Report eBook. Name: John Doe, Job: Accounting, Email: Johndoe@gmail.com, Phone number: 234567890, Institution: University of Michigan, Primary Discipline: Accountin\ng\nPrevious actions:\n[textbox]  * Last Name -> TYPE: Doe\n[textbox]  * Job Title -> TYPE: Accounting\n[textbox]  * Work Email Address: -> TYPE: Johndoe@gmail.com\n[textbox]  * Work Phone Number -> TYPE: 234567890\n[textbox]  * Institution Name -> TYPE: University of Michigan\nNext action:"
+      }
+    ],
+    "output": "`SELECT [28457] [accounting]`",
+    "raw_response": "`SELECT [28457] [accounting]`",
+    "normalized_action": "SELECT [28457] [accounting]",
+    "token_stats": {
+      "prompt_tokens": 1622,
+      "completion_tokens": 409,
+      "total_tokens": 2031
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "SELECT [28457] [accounting]",
+    "target_act": "SELECT [28457] [Accounting]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <p id=38556> eBook </p> <h2> Job Skills of 2023 Report </h2> <p> Discover the fastest-growing job skills for businesses, governments, and higher education institutions. </p> </div> <form> <div> <label> Work Email Address: </label> <input id=38648 email work email address /> </div> <div> <label> Primary Discipline </label> <select id=38690> <option> Select... </option> <option accounting true> Accounting </option> <option engineering> Aeronautical/Aerospace Engineering </option> <option architecture> Architecture </option> <option biochemical> Biochemical Engineering/Biotechnology </option> <option biochemistry> Biochemistry </option> <option biotechnology> Biotechnology </option> <option business> Business </option> <option chemical engineering> Chemical Engineering </option> <option chemistry> Chemistry </option> <option civil engineering> Civil Engineering </option> <option communications> Communications </option> <option computer science> Computer Science </option> <option data learning> Data Science/Machine Learning </option> <option dental school> Dental School </option> <option economics> Economics </option> <option engineering> Electrical/Electronics Engineering </option> <option> Entrepreneurship </option> <option environmental science> Environmental Science </option> <option finance> Finance </option> <option fine & performing arts> Fine & Performing Arts </option> <option food sciences technology> Food Sciences Technology </option> <option history> History </option> <option human resources> Human Resources </option> <option information technology> Information Technology </option> </select> </div> <div> <label> State </label> <select id=39306 state> <option> Select... </option> <option ak> AK </option> <option al> AL </option> <option ar> AR </option> <option az> AZ </option> <option ca> CA </option> <option co> CO </option> <option ct> CT </option> <option de> DE </option> <option fl> FL </option> <option ga> GA </option> <option hi> HI </option> <option ia> IA </option> <option id> ID </option> <option il> IL </option> <option in> IN </option> <option ks> KS </option> <option ky> KY </option> <option la> LA </option> <option ma> MA </option> <option md> MD </option> <option me> ME </option> <option mi true> MI </option> <option mn> MN </option> <option mo> MO </option> </select> </div> <input/> <input/> <input c4c /> <button id=38403 submit> Submit </button> <input formid 1986 /> <input munchkinid 748-miv-116 /> </form> </div> </html>\n```\nTask: Apply to get the Job Skills of 2023 Report eBook. Name: John Doe, Job: Accounting, Email: Johndoe@gmail.com, Phone number: 234567890, Institution: University of Michigan, Primary Discipline: Accountin\ng\nPrevious actions:\n[textbox]  * Work Phone Number -> TYPE: 234567890\n[textbox]  * Institution Name -> TYPE: University of Michigan\n[combobox]  * Primary Discipline -> SELECT: Accounting\n[combobox]  * Country -> SELECT: United States\n[combobox]  * State -> SELECT: MI\nNext action:"
+      }
+    ],
+    "output": "`TYPE [38648] [Johndoe@gmail.com]`",
+    "raw_response": "`TYPE [38648] [Johndoe@gmail.com]`",
+    "normalized_action": "TYPE [38648] [Johndoe@gmail.com]",
+    "token_stats": {
+      "prompt_tokens": 1578,
+      "completion_tokens": 111,
+      "total_tokens": 1689
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [38648] [Johndoe@gmail.com]",
+    "target_act": "CLICK [38403]"
+  },
+  {
+    "element_acc": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    "action_f1": [
+      0,
+      0,
+      1.0,
+      0,
+      0,
+      0.3333333333333333,
+      0.6666666666666666,
+      0,
+      1.0,
+      0.5,
+      0,
+      0,
+      0
+    ],
+    "step_success": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "success": [
+      0
+    ],
+    "token_stats": {
+      "prompt_tokens": 10162,
+      "completion_tokens": 1925,
+      "total_tokens": 12087
+    }
+  }
+]

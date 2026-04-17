@@ -1,0 +1,432 @@
+[
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a id=261> Child </a> <div> <div> <div button without label> </div> <input id=1126 ttc /> </div> <div> <div> <img id=1291 boy or girl /> <div> Choosing the sex of your baby: Are the old wives' tales true? </div> <div> Reviewed by Layan Alrahmani, M.D., ob-gyn, MFM </div> </div> <div> <img id=1416 pregnant mom and toddler /> <div> How long should you wait to get pregnant after having a C-section? </div> <div> Reviewed by Cheryl Axelrod, M.D., ob-gyn </div> </div> </div> </div> </div> <input id=2302 search search babycenter /> </div> </html>\n```\nTask: See the prediction about the girl child's height, whose current height at seven years is 4 feet and whose weight is 55 lbs, her mother is 5 feet 2, and her father is 5 feet 8.\nPrevious actions:\nNone\nNext action:"
+      }
+    ],
+    "output": "`TYPE [2302] [child height prediction]`\n</think>\n\n`TYPE [2302] [child height prediction]`",
+    "raw_response": "`TYPE [2302] [child height prediction]`\n</think>\n\n`TYPE [2302] [child height prediction]`",
+    "normalized_action": "TYPE [2302] [child height prediction]",
+    "token_stats": {
+      "prompt_tokens": 1031,
+      "completion_tokens": 531,
+      "total_tokens": 1562
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [2302] [child height prediction]",
+    "target_act": "CLICK [261]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <body> <div> <div> <div radiogroup> <div> <input radio female true /> <label id=36961> girl </label> </div> </div> <button id=37080 button> <span> Calculate </span> </button> </div> <div> <p> Mayo Clinic. 2022. What's the best way to predict a child's adult height? [Accessed June 2022] </p> <p> U.S. Centers for Disease Control and Prevention. 2017. Clinical Growth Charts. [Accessed June 2022] </p> <p> Harry Khamis. 2001. Stature Prediction. [Accessed June 2022] </p> <button id=37199 button> <span> Show more </span> </button> </div> </div> <ul listbox> <li option> 2 1/2 years </li> <li option> 3 years </li> <li option> 3 1/2 years </li> <li id=38115 option> 4 years </li> <li option> 4 1/2 years </li> <li option> 5 years </li> <li option> 5 1/2 years </li> <li option> 6 years </li> <li option> 6 1/2 years </li> <li id=36113 option> 7 years </li> <li option> 7 1/2 years </li> <li option> 8 years </li> <li option> 8 1/2 years </li> </ul> </body> </html>\n```\nTask: See the prediction about the girl child's height, whose current height at seven years is 4 feet and whose weight is 55 lbs, her mother is 5 feet 2, and her father is 5 feet 8.\nPrevious actions:\n[link]  CHILD -> CLICK\n[figcaption]  Child Height Predictor -> CLICK\n[button]  Child's age 2 years -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`CLICK [36115]`",
+    "raw_response": "`CLICK [36115]`",
+    "normalized_action": "CLICK [36115]",
+    "token_stats": {
+      "prompt_tokens": 1253,
+      "completion_tokens": 275,
+      "total_tokens": 1528
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [36115]",
+    "target_act": "CLICK [36113]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <div> <input id=61378 number child's height * ft. 0 4 /> <p> ft. </p> </div> <div> <input id=60487 number 0 /> <p> lbs. </p> </div> <div> <input id=61430 number mother's height * in. 0 /> <p> in. </p> </div> <button id=61469 button> <span> Calculate </span> </button> </div> <div> <p> Mayo Clinic. 2022. What's the best way to predict a child's adult height? [Accessed June 2022] </p> <p> U.S. Centers for Disease Control and Prevention. 2017. Clinical Growth Charts. [Accessed June 2022] </p> <p> Harry Khamis. 2001. Stature Prediction. [Accessed June 2022] </p> <button id=61588 button> <span> Show more </span> </button> </div> </div> </html>\n```\nTask: See the prediction about the girl child's height, whose current height at seven years is 4 feet and whose weight is 55 lbs, her mother is 5 feet 2, and her father is 5 feet 8.\nPrevious actions:\n[link]  CHILD -> CLICK\n[figcaption]  Child Height Predictor -> CLICK\n[button]  Child's age 2 years -> CLICK\n[option]  7 years -> CLICK\n[spinbutton]  Child's height * ft. -> TYPE: 4\nNext action:"
+      }
+    ],
+    "output": "`TYPE [60487] [55]`",
+    "raw_response": "`TYPE [60487] [55]`",
+    "normalized_action": "TYPE [60487] [55]",
+    "token_stats": {
+      "prompt_tokens": 1154,
+      "completion_tokens": 551,
+      "total_tokens": 1705
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [60487] [55]",
+    "target_act": "TYPE [60487] [55]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <div> <div> <input id=72788 number mother's height * ft. 0 /> <p> ft. </p> </div> <div> <input id=73719 number mother's height * in. 0 /> <p> in. </p> </div> </div> <div> <input id=73747 number father's height * in. 0 /> <p> in. </p> </div> <button id=73758 button> <span> Calculate </span> </button> </div> <div> <p> Mayo Clinic. 2022. What's the best way to predict a child's adult height? [Accessed June 2022] </p> <p> U.S. Centers for Disease Control and Prevention. 2017. Clinical Growth Charts. [Accessed June 2022] </p> <p> Harry Khamis. 2001. Stature Prediction. [Accessed June 2022] </p> <button id=73877 button> <span> Show more </span> </button> </div> </div> </html>\n```\nTask: See the prediction about the girl child's height, whose current height at seven years is 4 feet and whose weight is 55 lbs, her mother is 5 feet 2, and her father is 5 feet 8.\nPrevious actions:\n[figcaption]  Child Height Predictor -> CLICK\n[button]  Child's age 2 years -> CLICK\n[option]  7 years -> CLICK\n[spinbutton]  Child's height * ft. -> TYPE: 4\n[spinbutton]  0 -> TYPE: 55\nNext action:"
+      }
+    ],
+    "output": "`TYPE [72788] [5]`\n\n`TYPE [73719] [2]`\n\n`TYPE [73747] [8]`\n\n`CLICK [73758]`",
+    "raw_response": "`TYPE [72788] [5]`\n\n`TYPE [73719] [2]`\n\n`TYPE [73747] [8]`\n\n`CLICK [73758]`",
+    "normalized_action": "TYPE [72788] [5]",
+    "token_stats": {
+      "prompt_tokens": 1170,
+      "completion_tokens": 354,
+      "total_tokens": 1524
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [72788] [5]",
+    "target_act": "TYPE [72788] [5]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <div> <div id=85581 button> 7 years </div> <input id=85583 child's age 7 /> </div> <div> <input id=84731 number mother's height * in. 0 /> <p> in. </p> </div> <button id=85688 button> <span> Calculate </span> </button> </div> <div> <p> Mayo Clinic. 2022. What's the best way to predict a child's adult height? [Accessed June 2022] </p> <p> U.S. Centers for Disease Control and Prevention. 2017. Clinical Growth Charts. [Accessed June 2022] </p> <p> Harry Khamis. 2001. Stature Prediction. [Accessed June 2022] </p> <button id=85807 button> <span> Show more </span> </button> </div> </div> </html>\n```\nTask: See the prediction about the girl child's height, whose current height at seven years is 4 feet and whose weight is 55 lbs, her mother is 5 feet 2, and her father is 5 feet 8.\nPrevious actions:\n[button]  Child's age 2 years -> CLICK\n[option]  7 years -> CLICK\n[spinbutton]  Child's height * ft. -> TYPE: 4\n[spinbutton]  0 -> TYPE: 55\n[spinbutton]  Mother's height * ft. -> TYPE: 5\nNext action:"
+      }
+    ],
+    "output": "`TYPE [85583] [45]`",
+    "raw_response": "`TYPE [85583] [45]`",
+    "normalized_action": "TYPE [85583] [45]",
+    "token_stats": {
+      "prompt_tokens": 1143,
+      "completion_tokens": 668,
+      "total_tokens": 1811
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [85583] [45]",
+    "target_act": "TYPE [84731] [2]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <a id=120791> Child </a> <div> <div> <div> <div id=121357 button> 7 years </div> <input id=121359 child's age 7 /> </div> <button id=121465 button> <span> Calculate </span> </button> </div> <div> <p> Mayo Clinic. 2022. What's the best way to predict a child's adult height? [Accessed June 2022] </p> <p> U.S. Centers for Disease Control and Prevention. 2017. Clinical Growth Charts. [Accessed June 2022] </p> <p> Harry Khamis. 2001. Stature Prediction. [Accessed June 2022] </p> <button id=121583 button> <span> Show more </span> </button> </div> </div> </div> </html>\n```\nTask: See the prediction about the girl child's height, whose current height at seven years is 4 feet and whose weight is 55 lbs, her mother is 5 feet 2, and her father is 5 feet 8.\nPrevious actions:\n[spinbutton]  0 -> TYPE: 55\n[spinbutton]  Mother's height * ft. -> TYPE: 5\n[spinbutton]  Mother's height * in. -> TYPE: 2\n[spinbutton]  Father's height * ft. -> TYPE: 5\n[spinbutton]  Father's height * in. -> TYPE: 8\nNext action:"
+      }
+    ],
+    "output": "`CLICK [121465]`",
+    "raw_response": "`CLICK [121465]`",
+    "normalized_action": "CLICK [121465]",
+    "token_stats": {
+      "prompt_tokens": 1146,
+      "completion_tokens": 153,
+      "total_tokens": 1299
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [121465]",
+    "target_act": "CLICK [121465]"
+  },
+  {
+    "element_acc": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    "action_f1": [
+      0,
+      0,
+      0,
+      1.0,
+      0,
+      1.0,
+      1.0,
+      0.5,
+      0,
+      0,
+      1.0
+    ],
+    "step_success": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    "success": [
+      0
+    ],
+    "token_stats": {
+      "prompt_tokens": 6897,
+      "completion_tokens": 2532,
+      "total_tokens": 9429
+    }
+  }
+]

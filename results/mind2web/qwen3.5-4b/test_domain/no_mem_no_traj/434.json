@@ -1,0 +1,306 @@
+[
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <body> <header banner> <div> <div> <span> Menu </span> <button id=267 button show navigation menu> <span> Menu </span> </button> </div> <div> <button id=277 button show search menu> <span> Search GOV.UK </span> </button> <span> Search GOV.UK </span> </div> </div> </header> <main main> <form search> <div> <input id=651 search q /> <button id=655 submit> Search GOV.UK </button> </div> </form> </main> <footer contentinfo> <a id=1538> Guidance and regulation </a> </footer> </body> </html>\n```\nTask: Find a latest article of Brexit regarding regulations.\nPrevious actions:\nNone\nNext action:"
+      }
+    ],
+    "output": "`TYPE [651] [Brexit latest article regulations]`",
+    "raw_response": "`TYPE [651] [Brexit latest article regulations]`",
+    "normalized_action": "TYPE [651] [Brexit latest article regulations]",
+    "token_stats": {
+      "prompt_tokens": 965,
+      "completion_tokens": 91,
+      "total_tokens": 1056
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [651] [Brexit latest article regulations]",
+    "target_act": "CLICK [267]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <body> <header banner> <nav> <div> <button id=3487 button show search menu> <span> Search GOV.UK </span> </button> <span> Search GOV.UK </span> </div> <li> <a id=3276> Guidance and regulation </a> <p> Detailed guidance, regulations and rules </p> </li> </nav> </header> <main main> <form search> <div> <input id=3881 search q /> <button id=3885 submit> Search GOV.UK </button> </div> </form> </main> <footer contentinfo> <a id=4769> Guidance and regulation </a> </footer> </body> </html>\n```\nTask: Find a latest article of Brexit regarding regulations.\nPrevious actions:\n[button]  Show navigation menu -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`TYPE [3881] [Brexit regulations]`",
+    "raw_response": "`TYPE [3881] [Brexit regulations]`",
+    "normalized_action": "TYPE [3881] [Brexit regulations]",
+    "token_stats": {
+      "prompt_tokens": 974,
+      "completion_tokens": 122,
+      "total_tokens": 1096
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [3881] [Brexit regulations]",
+    "target_act": "CLICK [3276]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <div search guidance and regulation> <div> <input id=5545 search keywords /> <button id=5549 submit> Search </button> </div> </div> <div search search filters> <div> <button id=4952 button> Topic </button> <button id=15661 button> Updated </button> </div> </div> </div> <div region guidance and regulation search results> <div> <label> Sort by </label> <select id=15802 order> <option most-viewed true> Most viewed </option> <option relevance> Relevance </option> <option updated-newest> Updated (newest) </option> <option updated-oldest> Updated (oldest) </option> </select> </div> </div> </div> </html>\n```\nTask: Find a latest article of Brexit regarding regulations.\nPrevious actions:\n[button]  Show navigation menu -> CLICK\n[link]  Guidance and regulation -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`TYPE [5545] [Brexit regulations]`",
+    "raw_response": "`TYPE [5545] [Brexit regulations]`",
+    "normalized_action": "TYPE [5545] [Brexit regulations]",
+    "token_stats": {
+      "prompt_tokens": 1003,
+      "completion_tokens": 194,
+      "total_tokens": 1197
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [5545] [Brexit regulations]",
+    "target_act": "CLICK [4952]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <div search guidance and regulation> <div> <input id=29069 search keywords /> <button submit> Search </button> </div> </div> <div search search filters> <div> <div> <button id=29116 button> Topic </button> <div> <label> Topic </label> <select id=28476> <option true> All topics </option> <option> Brexit </option> <option> Business and industry </option> <option> Coronavirus (COVID-19) </option> <option> Corporate information </option> <option> Crime, justice and law </option> <option> Defence and armed forces </option> <option> Education, training and skills </option> <option> Entering and staying in the UK </option> <option> Environment </option> <option> Going and being abroad </option> <option> Government </option> <option> Health and social care </option> <option> Housing, local and community </option> <option> International </option> <option> Life circumstances </option> <option> Money </option> <option> Parenting, childcare and children's services </option> <option> Regional and local government </option> <option> Society and culture </option> <option> Transport </option> <option> Welfare </option> <option> Work </option> </select> </div> </div> <button id=39188 button> Updated </button> </div> </div> </div> <div region guidance and regulation search results> <div> <label> Sort by </label> <select id=39329 order> <option most-viewed true> Most viewed </option> <option relevance> Relevance </option> <option updated-newest> Updated (newest) </option> <option updated-oldest> Updated (oldest) </option> </select> </div> </div> </div> </html>\n```\nTask: Find a latest article of Brexit regarding regulations.\nPrevious actions:\n[button]  Show navigation menu -> CLICK\n[link]  Guidance and regulation -> CLICK\n[button]  Topic -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`SELECT [28476] [Brexit]`",
+    "raw_response": "`SELECT [28476] [Brexit]`",
+    "normalized_action": "SELECT [28476] [Brexit]",
+    "token_stats": {
+      "prompt_tokens": 1251,
+      "completion_tokens": 355,
+      "total_tokens": 1606
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "SELECT [28476] [Brexit]",
+    "target_act": "SELECT [28476] [Brexit]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <div search guidance and regulation> <div> <input id=52605 search keywords /> <button id=52609 submit> Search </button> </div> </div> <div search search filters> <div> <div> <label> Topic </label> <select id=52675> <option> All topics </option> <option true> Brexit </option> <option> Business and industry </option> <option> Coronavirus (COVID-19) </option> <option> Corporate information </option> <option> Crime, justice and law </option> <option> Defence and armed forces </option> <option> Education, training and skills </option> <option> Entering and staying in the UK </option> <option> Environment </option> <option> Going and being abroad </option> <option> Government </option> <option> Health and social care </option> <option> Housing, local and community </option> <option> International </option> <option> Life circumstances </option> <option> Money </option> <option> Parenting, childcare and children's services </option> <option> Regional and local government </option> <option> Society and culture </option> <option> Transport </option> <option> Welfare </option> <option> Work </option> </select> </div> <button id=62731 button> Updated </button> </div> </div> </div> <div region guidance and regulation search results> <div> <label> Sort by </label> <select id=52009 order> <option most-viewed true> Most viewed </option> <option relevance> Relevance </option> <option updated-newest> Updated (newest) </option> <option updated-oldest> Updated (oldest) </option> </select> </div> </div> </div> </html>\n```\nTask: Find a latest article of Brexit regarding regulations.\nPrevious actions:\n[button]  Show navigation menu -> CLICK\n[link]  Guidance and regulation -> CLICK\n[button]  Topic -> CLICK\n[combobox]  Topic -> SELECT: Brexit\nNext action:"
+      }
+    ],
+    "output": "`CLICK [52609]`",
+    "raw_response": "`CLICK [52609]`",
+    "normalized_action": "CLICK [52609]",
+    "token_stats": {
+      "prompt_tokens": 1248,
+      "completion_tokens": 253,
+      "total_tokens": 1501
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [52609]",
+    "target_act": "SELECT [52009] [Updated (newest)]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "element_acc": [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "action_f1": [
+      0,
+      0,
+      0,
+      1.0,
+      0,
+      0
+    ],
+    "step_success": [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "success": [
+      0
+    ],
+    "token_stats": {
+      "prompt_tokens": 5441,
+      "completion_tokens": 1015,
+      "total_tokens": 6456
+    }
+  }
+]

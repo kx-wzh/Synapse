@@ -1,0 +1,360 @@
+[
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <section navigation> <div region main menu region> <ul> <li> <label id=6228> <span> Agencies </span> </label> <input checkbox on /> </li> <a id=5984> Projects </a> </ul> </div> </section> <div main> <aside complementary> <div region> <div> <div> <label> From </label> <input id=6543 search address, station, landmark /> </div> <div> <label> To </label> <input id=6553 search address, station, landmark /> </div> </div> </div> </aside> </div> <div main> <div> <h2> Featured projects </h2> <a id=7925> See All </a> </div> </div> </div> </html>\n```\nTask: Get the report from the final environmental impact statement for the Jamaica Bus Depot expansion.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`TYPE [6543] [Jamaica Bus Depot]`",
+    "raw_response": "`TYPE [6543] [Jamaica Bus Depot]`",
+    "normalized_action": "TYPE [6543] [Jamaica Bus Depot]",
+    "token_stats": {
+      "prompt_tokens": 1002,
+      "completion_tokens": 251,
+      "total_tokens": 1253
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [6543] [Jamaica Bus Depot]",
+    "target_act": "CLICK [5984]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div main> <div> <form search> <div> <input id=8927 text search projects /> <button id=9657 submit search> Search </button> </div> </form> <div> <a id=10073 fixing the rutgers tunnel> <img fixing the rutgers tunnel /> <div> <div> Fixing the Rutgers Tunnel </div> <div> Superstorm Sandy caused severe damage to 11 of our underwater tunnels, including the Rutgers Tunnel, which F trains use to </div> </div> </a> <a id=10091 fulton transit center> <img fulton transit center /> <div> <div> Fulton Transit Center </div> <div> Fulton Center opened in November 2014 after a major reconstruction to integrate five subway stations serving nine lines. The new </div> </div> </a> <a id=10109 improving accessibility at 68 st-hunter> <img improving accessibility at 68 st-hunter /> <div> <div> Improving accessibility at 68 St-Hunter College </div> <div> MTA Construction and Development has proposed to improvements to the 68 St-Hunter College station, located at Lexington Avenue and East </div> </div> </a> </div> </div> </div> </html>\n```\nTask: Get the report from the final environmental impact statement for the Jamaica Bus Depot expansion.\nPrevious actions:\n[svg]   -> CLICK\n[link]  Projects -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`TYPE [8927] [Jamaica Bus Depot expansion]`",
+    "raw_response": "`TYPE [8927] [Jamaica Bus Depot expansion]`",
+    "normalized_action": "TYPE [8927] [Jamaica Bus Depot expansion]",
+    "token_stats": {
+      "prompt_tokens": 1110,
+      "completion_tokens": 230,
+      "total_tokens": 1340
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [8927] [Jamaica Bus Depot expansion]",
+    "target_act": "TYPE [8927] [jamaica bus depot expansion]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div main> <article> <a id=13327 lirr main line expansion> <img lirr main line expansion /> <div> <div> LIRR Main Line Expansion </div> <div> The MTA is building a third track from Floral Park to Hicksville that will reduce train congestion and delays, especially </div> </div> </a> <div> <form search> <div> <input id=12757 text search projects jamaica bus depot expansion /> <button id=13492 submit search> Search </button> </div> </form> <div> <a id=13925 fulton transit center> <img fulton transit center /> <div> <div> Fulton Transit Center </div> <div> Fulton Center opened in November 2014 after a major reconstruction to integrate five subway stations serving nine lines. The new </div> </div> </a> <a id=13943 improving accessibility at 68 st-hunter> <img improving accessibility at 68 st-hunter /> <div> <div> Improving accessibility at 68 St-Hunter College </div> <div> MTA Construction and Development has proposed to improvements to the 68 St-Hunter College station, located at Lexington Avenue and East </div> </div> </a> </div> </div> </article> </div> </html>\n```\nTask: Get the report from the final environmental impact statement for the Jamaica Bus Depot expansion.\nPrevious actions:\n[svg]   -> CLICK\n[link]  Projects -> CLICK\n[textbox]  Search Projects -> TYPE: jamaica bus depot expansion\nNext action:"
+      }
+    ],
+    "output": "`CLICK [13492]`",
+    "raw_response": "`CLICK [13492]`",
+    "normalized_action": "CLICK [13492]",
+    "token_stats": {
+      "prompt_tokens": 1138,
+      "completion_tokens": 183,
+      "total_tokens": 1321
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [13492]",
+    "target_act": "CLICK [12757]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div main> <article> <a id=17186 transitioning to a zero-emission bus> <img transitioning to a zero-emission bus /> <div> <div> Transitioning to a zero-emission bus fleet </div> <div> As part of our commitment to sustainability, the MTA will replace and transform its entire bus fleet with zero-emissions vehicles </div> </div> </a> <div> <form search> <div> <input id=17310 text jamaica bus depot expansion search projects /> <button id=17314 submit search> Search </button> </div> </form> <a id=17331 jamaica bus depot expansion> <img id=16587 jamaica bus depot expansion /> <div> <div> Jamaica Bus Depot Expansion </div> <div> We are planning to reconstruct and expand the existing Jamaica Bus Depot in Queens. This project would modernize the depot </div> </div> </a> </div> </article> </div> </html>\n```\nTask: Get the report from the final environmental impact statement for the Jamaica Bus Depot expansion.\nPrevious actions:\n[svg]   -> CLICK\n[link]  Projects -> CLICK\n[textbox]  Search Projects -> TYPE: jamaica bus depot expansion\n[textbox]  Search Projects -> ENTER\nNext action:"
+      }
+    ],
+    "output": "`CLICK [17331]`",
+    "raw_response": "`CLICK [17331]`",
+    "normalized_action": "CLICK [17331]",
+    "token_stats": {
+      "prompt_tokens": 1070,
+      "completion_tokens": 474,
+      "total_tokens": 1544
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [17331]",
+    "target_act": "CLICK [16587]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <section navigation> <div> <a> Schedules </a> <a> Maps </a> <a> Fares & Tolls </a> <a id=18617> Planned Work </a> </div> </section> <div main> <section> <div> <span id=18720> Jamaica Bus Depot Expansion </span> <div> We are planning to reconstruct and expand the existing Jamaica Bus Depot in Queens. This project would modernize the depot </div> <div id=18730> Updated Nov 16, 2022 </div> </div> <div> <summary id=19099> <div> Supplemental Environmental Assessment </div> </summary> <summary id=19133> <div> Final Environmental Impact Statement </div> </summary> </div> </section> </div> </div> </html>\n```\nTask: Get the report from the final environmental impact statement for the Jamaica Bus Depot expansion.\nPrevious actions:\n[svg]   -> CLICK\n[link]  Projects -> CLICK\n[textbox]  Search Projects -> TYPE: jamaica bus depot expansion\n[textbox]  Search Projects -> ENTER\n[img]  Jamaica Bus Depot Expansion -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`CLICK [19133]`",
+    "raw_response": "`CLICK [19133]`",
+    "normalized_action": "CLICK [19133]",
+    "token_stats": {
+      "prompt_tokens": 1054,
+      "completion_tokens": 173,
+      "total_tokens": 1227
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [19133]",
+    "target_act": "CLICK [19133]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div main> <section> <div> <span id=22182> Jamaica Bus Depot Expansion </span> <div> We are planning to reconstruct and expand the existing Jamaica Bus Depot in Queens. This project would modernize the depot </div> <div> Updated Nov 16, 2022 </div> </div> <div> <summary id=22570> <div> Supplemental Environmental Assessment </div> </summary> <details> <summary id=22604> <div> Final Environmental Impact Statement </div> </summary> <ul> <a id=22630> Volume 1: Executive Summary </a> <a id=21625> Volume 2: FEIS Report </a> </ul> </details> </div> </section> </div> </html>\n```\nTask: Get the report from the final environmental impact statement for the Jamaica Bus Depot expansion.\nPrevious actions:\n[link]  Projects -> CLICK\n[textbox]  Search Projects -> TYPE: jamaica bus depot expansion\n[textbox]  Search Projects -> ENTER\n[img]  Jamaica Bus Depot Expansion -> CLICK\n[div]  Final Environmental Impact Statement -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`CLICK [21625]`",
+    "raw_response": "`CLICK [21625]`",
+    "normalized_action": "CLICK [21625]",
+    "token_stats": {
+      "prompt_tokens": 1042,
+      "completion_tokens": 118,
+      "total_tokens": 1160
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [21625]",
+    "target_act": "CLICK [21625]"
+  },
+  {
+    "element_acc": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1
+    ],
+    "action_f1": [
+      0,
+      0,
+      0.4000000000000001,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "step_success": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    "success": [
+      0
+    ],
+    "token_stats": {
+      "prompt_tokens": 6416,
+      "completion_tokens": 1429,
+      "total_tokens": 7845
+    }
+  }
+]

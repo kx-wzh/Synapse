@@ -1,0 +1,360 @@
+[
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <body> <section main> <div tabpanel> <div> <div> <select id=816 makes[]> <option true> All makes </option> <optgroup popular makes> <option acura> Acura </option> <option audi> Audi </option> <option bmw> BMW </option> <option buick> Buick </option> <option cadillac> Cadillac </option> <option chevrolet> Chevrolet </option> <option chrysler> Chrysler </option> <option dodge> Dodge </option> <option ford> Ford </option> <option gmc> GMC </option> <option honda> Honda </option> <option hyundai> Hyundai </option> <option infiniti> INFINITI </option> <option jaguar> Jaguar </option> <option jeep> Jeep </option> <option kia> Kia </option> <option land_rover> Land Rover </option> <option lexus> Lexus </option> <option lincoln> Lincoln </option> <option mazda> Mazda </option> <option mercedes_benz> Mercedes-Benz </option> <option mitsubishi> Mitsubishi </option> <option nissan> Nissan </option> <option porsche> Porsche </option> </optgroup> </select> <label> Make </label> </div> <div> <select id=1088 list_price_max> <option true> No max price </option> <option 2000> $2,000 </option> <option 4000> $4,000 </option> <option 6000> $6,000 </option> <option 8000> $8,000 </option> <option 10000> $10,000 </option> <option 15000> $15,000 </option> <option 20000> $20,000 </option> <option 25000> $25,000 </option> <option 30000> $30,000 </option> <option 35000> $35,000 </option> <option 40000> $40,000 </option> <option 45000> $45,000 </option> <option 50000> $50,000 </option> <option 60000> $60,000 </option> <option 70000> $70,000 </option> <option 80000> $80,000 </option> <option 90000> $90,000 </option> <option 100000> $100,000 </option> <option 125000> $125,000 </option> <option 150000> $150,000 </option> <option 175000> $175,000 </option> </select> <label id=1134> Price </label> </div> <button id=314 submit> Search </button> </div> </div> </section> <footer contentinfo> <a id=278> Car Payment Calculators </a> </footer> </body> </html>\n```\nTask: Calculate the estimated car loan payment amount for an average credit-rated person for a 15,000-dollar car with a down payment of 2000 dollars and loan tenure of 48 months in zip 65215 and shop for the lowest priced car.\nPrevious actions:\nNone\nNext action:"
+      }
+    ],
+    "output": "`SELECT [1088] [15000]`",
+    "raw_response": "`SELECT [1088] [15000]`",
+    "normalized_action": "SELECT [1088] [15000]",
+    "token_stats": {
+      "prompt_tokens": 1616,
+      "completion_tokens": 214,
+      "total_tokens": 1830
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "SELECT [1088] [15000]",
+    "target_act": "CLICK [278]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <section main> <form> <div> <input id=11060 text price-input 35000 0 15,000 /> <label> Price of the car you want </label> </div> <div> <select id=10550> <option fair> Fair (619 and below) </option> <option average> Average (620 - 699) </option> <option good> Good (700 - 779) </option> <option excellent true> Excellent (780 - 850) </option> </select> <label> Your credit rating </label> </div> <div> <input id=11095 text 0 /> <label> Down payment (optional) </label> </div> <div> <input id=11106 text 0 /> <label> Trade-in value (optional) </label> </div> <div> <input id=11130 radio loan-term-48 /> <label> 48 </label> </div> </form> </section> </html>\n```\nTask: Calculate the estimated car loan payment amount for an average credit-rated person for a 15,000-dollar car with a down payment of 2000 dollars and loan tenure of 48 months in zip 65215 and shop for the lowest priced car.\nPrevious actions:\n[link]  Car Payment Calculators -> CLICK\n[textbox]  Price of the car you want -> TYPE: 15000\nNext action:"
+      }
+    ],
+    "output": "`SELECT [10550] [Average (620 - 699)]`",
+    "raw_response": "`SELECT [10550] [Average (620 - 699)]`",
+    "normalized_action": "SELECT [10550] [Average (620 - 699)]",
+    "token_stats": {
+      "prompt_tokens": 1126,
+      "completion_tokens": 498,
+      "total_tokens": 1624
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "SELECT [10550] [Average (620 - 699)]",
+    "target_act": "SELECT [10550] [Average (620 - 699)]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <section main> <div> <form> <div> <select id=17244> <option fair> Fair (619 and below) </option> <option average true> Average (620 - 699) </option> <option good> Good (700 - 779) </option> <option excellent> Excellent (780 - 850) </option> </select> <label> Your credit rating </label> </div> <div> <input id=16730 text 0 /> <label> Down payment (optional) </label> </div> <div> <input id=17280 text 0 /> <label> Trade-in value (optional) </label> </div> <div> <input id=17304 radio loan-term-48 /> <label> 48 </label> </div> </form> <a id=17496> Shop cars in your budget </a> </div> </section> </html>\n```\nTask: Calculate the estimated car loan payment amount for an average credit-rated person for a 15,000-dollar car with a down payment of 2000 dollars and loan tenure of 48 months in zip 65215 and shop for the lowest priced car.\nPrevious actions:\n[link]  Car Payment Calculators -> CLICK\n[textbox]  Price of the car you want -> TYPE: 15000\n[combobox]  Your credit rating -> SELECT: Average (620 - 699)\nNext action:"
+      }
+    ],
+    "output": "`TYPE [16730] [2000]`",
+    "raw_response": "`TYPE [16730] [2000]`",
+    "normalized_action": "TYPE [16730] [2000]",
+    "token_stats": {
+      "prompt_tokens": 1127,
+      "completion_tokens": 314,
+      "total_tokens": 1441
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [16730] [2000]",
+    "target_act": "TYPE [16730] [2000]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <section main> <form> <div> <select id=23439> <option fair> Fair (619 and below) </option> <option average true> Average (620 - 699) </option> <option good> Good (700 - 779) </option> <option excellent> Excellent (780 - 850) </option> </select> <label> Your credit rating </label> </div> <div> <input id=23465 text 0 2,000 /> <label> Down payment (optional) </label> </div> <div> <input id=23476 text 0 /> <label> Trade-in value (optional) </label> </div> <div> <input id=23500 radio loan-term-48 /> <label id=22926> 48 </label> </div> </form> </section> </html>\n```\nTask: Calculate the estimated car loan payment amount for an average credit-rated person for a 15,000-dollar car with a down payment of 2000 dollars and loan tenure of 48 months in zip 65215 and shop for the lowest priced car.\nPrevious actions:\n[link]  Car Payment Calculators -> CLICK\n[textbox]  Price of the car you want -> TYPE: 15000\n[combobox]  Your credit rating -> SELECT: Average (620 - 699)\n[textbox]  Down payment (optional) -> TYPE: 2000\nNext action:"
+      }
+    ],
+    "output": "`SELECT [23476] [Trade-in value (optional)]` -> `TYPE [23476] [0]`",
+    "raw_response": "`SELECT [23476] [Trade-in value (optional)]` -> `TYPE [23476] [0]`",
+    "normalized_action": "SELECT [23476] [Trade-in value (optional)]",
+    "token_stats": {
+      "prompt_tokens": 1134,
+      "completion_tokens": 571,
+      "total_tokens": 1705
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "SELECT [23476] [Trade-in value (optional)]",
+    "target_act": "CLICK [22926]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <body> <section main> <div> <div> <select id=56986 sort> <option true> Best match </option> <option list_price> Lowest price </option> <option> Highest price </option> <option mileage> Lowest mileage </option> <option mileage_desc> Highest mileage </option> <option distance> Nearest location </option> <option best_deal> Best deal </option> <option year_desc> Newest year </option> <option year> Oldest year </option> <option listed_at_desc> Newest listed </option> <option listed_at> Oldest listed </option> </select> <label id=58036> Sort by </label> </div> <form> <div group> <div> <select id=68703 list_price_min> <option true> Lowest </option> <option 2000> $2,000 </option> <option 4000> $4,000 </option> <option 6000> $6,000 </option> <option 8000> $8,000 </option> <option 10000> $10,000 </option> <option 15000> $15,000 </option> </select> <label> Min price </label> </div> </div> <div group> <div> <select id=68866 year_max> <option true> Newest </option> <option 2021> 2021 </option> <option 2020> 2020 </option> <option 2019> 2019 </option> <option 2018> 2018 </option> <option 2017> 2017 </option> <option 2016> 2016 </option> <option 2015> 2015 </option> <option 2014> 2014 </option> <option 2013> 2013 </option> <option 2012> 2012 </option> <option 2011> 2011 </option> <option 2010> 2010 </option> <option 2009> 2009 </option> <option 2008> 2008 </option> <option 2007> 2007 </option> <option 2006> 2006 </option> <option 2005> 2005 </option> <option 2004> 2004 </option> <option 2003> 2003 </option> <option 2002> 2002 </option> <option 2001> 2001 </option> <option 2000> 2000 </option> <option 1999> 1999 </option> <option 1998> 1998 </option> </select> <label> Max year </label> </div> </div> </form> </div> </section> <div region> <a id=70876> Car Payment Calculators </a> </div> </body> </html>\n```\nTask: Calculate the estimated car loan payment amount for an average credit-rated person for a 15,000-dollar car with a down payment of 2000 dollars and loan tenure of 48 months in zip 65215 and shop for the lowest priced car.\nPrevious actions:\n[textbox]  Down payment (optional) -> TYPE: 2000\n[label]  48 -> CLICK\n[textbox]  ZIP -> TYPE: 65215\n[textbox]  ZIP -> ENTER\n[link]  Shop cars in your budget -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`SELECT [56986] [Lowest price]`",
+    "raw_response": "`SELECT [56986] [Lowest price]`",
+    "normalized_action": "SELECT [56986] [Lowest price]",
+    "token_stats": {
+      "prompt_tokens": 1680,
+      "completion_tokens": 376,
+      "total_tokens": 2056
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "SELECT [56986] [Lowest price]",
+    "target_act": "SELECT [56986] [Lowest price]"
+  },
+  {
+    "element_acc": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "action_f1": [
+      0,
+      0,
+      1.0,
+      1.0,
+      0,
+      0,
+      0,
+      0,
+      1.0
+    ],
+    "step_success": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "success": [
+      0
+    ],
+    "token_stats": {
+      "prompt_tokens": 6683,
+      "completion_tokens": 1973,
+      "total_tokens": 8656
+    }
+  }
+]

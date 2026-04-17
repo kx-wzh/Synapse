@@ -1,0 +1,414 @@
+[
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <section> <div> <select id=17906> <optgroup month> <option all games object:3> All Games </option> <option january object:4> January </option> <option february object:5> February </option> <option march object:6 true> March </option> <option april object:7> April </option> <option may object:8> May </option> <option june object:9> June </option> <option july object:10> July </option> <option august object:11> August </option> <option september object:12> September </option> <option october object:13> October </option> <option november object:14> November </option> <option december object:15> December </option> </optgroup> <optgroup week> <option all weeks object:16> All Weeks </option> <option week 1 object:17> Week 1 </option> <option week 2 object:18> Week 2 </option> <option week 3 object:19> Week 3 </option> <option week 4 object:20> Week 4 </option> <option week 5 object:21> Week 5 </option> <option week 6 object:22> Week 6 </option> <option week 7 object:23> Week 7 </option> <option week 8 object:24> Week 8 </option> <option week 9 object:25> Week 9 </option> <option week 10 object:26> Week 10 </option> </optgroup> </select> <select id=17908> <option all teams string:0 true> All Teams </option> <option atlanta hawks> Atlanta Hawks </option> <option boston celtics> Boston Celtics </option> <option brooklyn nets> Brooklyn Nets </option> <option charlotte hornets> Charlotte Hornets </option> <option chicago bulls> Chicago Bulls </option> <option cleveland cavaliers> Cleveland Cavaliers </option> <option dallas mavericks> Dallas Mavericks </option> <option denver nuggets> Denver Nuggets </option> <option detroit pistons> Detroit Pistons </option> <option golden state warriors> Golden State Warriors </option> <option houston rockets> Houston Rockets </option> <option indiana pacers> Indiana Pacers </option> <option la clippers> LA Clippers </option> <option los angeles lakers> Los Angeles Lakers </option> <option memphis grizzlies> Memphis Grizzlies </option> <option miami heat> Miami Heat </option> <option milwaukee bucks> Milwaukee Bucks </option> <option minnesota timberwolves> Minnesota Timberwolves </option> <option new orleans pelicans> New Orleans Pelicans </option> <option new york knicks> New York Knicks </option> <option oklahoma city thunder> Oklahoma City Thunder </option> <option orlando magic> Orlando Magic </option> <option philadelphia 76ers> Philadelphia 76ers </option> <option phoenix suns> Phoenix Suns </option> </select> <a id=18568> Find Tickets </a> </div> <div> <div id=18709> Hornets </div> <div id=18742> Bulls </div> </div> </section> </html>\n```\nTask: check the best seat available below $500 for purchase to Chicago Bulls vs Charlotte Hornets on Mar 31st with wheel chair accessibility.\nPrevious actions:\n[link]  Tickets -> CLICK\n[select]  All Games -> SELECT: March\nNext action:"
+      }
+    ],
+    "output": "`SELECT [17908] [Chicago Bulls]`",
+    "raw_response": "`SELECT [17908] [Chicago Bulls]`",
+    "normalized_action": "SELECT [17908] [Chicago Bulls]",
+    "token_stats": {
+      "prompt_tokens": 1580,
+      "completion_tokens": 251,
+      "total_tokens": 1831
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "SELECT [17908] [Chicago Bulls]",
+    "target_act": "SELECT [17908] [Chicago Bulls]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <section> <div> <select id=21905> <optgroup month> <option all games object:3> All Games </option> <option january object:4> January </option> <option february object:5> February </option> <option march object:6 true> March </option> <option april object:7> April </option> <option may object:8> May </option> <option june object:9> June </option> <option july object:10> July </option> <option august object:11> August </option> <option september object:12> September </option> <option october object:13> October </option> <option november object:14> November </option> <option december object:15> December </option> </optgroup> <optgroup week> <option all weeks object:16> All Weeks </option> <option week 1 object:17> Week 1 </option> <option week 2 object:18> Week 2 </option> <option week 3 object:19> Week 3 </option> <option week 4 object:20> Week 4 </option> <option week 5 object:21> Week 5 </option> <option week 6 object:22> Week 6 </option> <option week 7 object:23> Week 7 </option> <option week 8 object:24> Week 8 </option> <option week 9 object:25> Week 9 </option> <option week 10 object:26> Week 10 </option> </optgroup> </select> <select id=21907> <option all teams string:0> All Teams </option> <option atlanta hawks> Atlanta Hawks </option> <option boston celtics> Boston Celtics </option> <option brooklyn nets> Brooklyn Nets </option> <option charlotte hornets> Charlotte Hornets </option> <option chicago bulls true> Chicago Bulls </option> <option cleveland cavaliers> Cleveland Cavaliers </option> <option dallas mavericks> Dallas Mavericks </option> <option denver nuggets> Denver Nuggets </option> <option detroit pistons> Detroit Pistons </option> <option golden state warriors> Golden State Warriors </option> <option houston rockets> Houston Rockets </option> <option indiana pacers> Indiana Pacers </option> <option la clippers> LA Clippers </option> <option los angeles lakers> Los Angeles Lakers </option> <option memphis grizzlies> Memphis Grizzlies </option> <option miami heat> Miami Heat </option> <option milwaukee bucks> Milwaukee Bucks </option> <option minnesota timberwolves> Minnesota Timberwolves </option> <option new orleans pelicans> New Orleans Pelicans </option> <option new york knicks> New York Knicks </option> <option oklahoma city thunder> Oklahoma City Thunder </option> <option orlando magic> Orlando Magic </option> <option philadelphia 76ers> Philadelphia 76ers </option> <option phoenix suns> Phoenix Suns </option> </select> <a id=21951> Find Tickets </a> </div> <div> <div id=22707> Hornets </div> <div id=22740> Bulls </div> </div> </section> </html>\n```\nTask: check the best seat available below $500 for purchase to Chicago Bulls vs Charlotte Hornets on Mar 31st with wheel chair accessibility.\nPrevious actions:\n[link]  Tickets -> CLICK\n[select]  All Games -> SELECT: March\n[select]  All Teams -> SELECT: Chicago Bulls\nNext action:"
+      }
+    ],
+    "output": "`CLICK [21951]`",
+    "raw_response": "`CLICK [21951]`",
+    "normalized_action": "CLICK [21951]",
+    "token_stats": {
+      "prompt_tokens": 1592,
+      "completion_tokens": 207,
+      "total_tokens": 1799
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [21951]",
+    "target_act": "CLICK [21951]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <section> <section> <div> <select id=30939> <optgroup month> <option all games object:3> All Games </option> <option january object:4> January </option> <option february object:5> February </option> <option march object:6 true> March </option> <option april object:7> April </option> <option may object:8> May </option> <option june object:9> June </option> <option july object:10> July </option> <option august object:11> August </option> <option september object:12> September </option> <option october object:13> October </option> <option november object:14> November </option> <option december object:15> December </option> </optgroup> <optgroup week> <option all weeks object:16> All Weeks </option> <option week 1 object:17> Week 1 </option> <option week 2 object:18> Week 2 </option> <option week 3 object:19> Week 3 </option> <option week 4 object:20> Week 4 </option> <option week 5 object:21> Week 5 </option> <option week 6 object:22> Week 6 </option> <option week 7 object:23> Week 7 </option> <option week 8 object:24> Week 8 </option> <option week 9 object:25> Week 9 </option> <option week 10 object:26> Week 10 </option> </optgroup> </select> <select id=31026> <option all teams string:0> All Teams </option> <option atlanta hawks> Atlanta Hawks </option> <option boston celtics> Boston Celtics </option> <option brooklyn nets> Brooklyn Nets </option> <option charlotte hornets> Charlotte Hornets </option> <option chicago bulls true> Chicago Bulls </option> <option cleveland cavaliers> Cleveland Cavaliers </option> <option dallas mavericks> Dallas Mavericks </option> <option denver nuggets> Denver Nuggets </option> <option detroit pistons> Detroit Pistons </option> <option golden state warriors> Golden State Warriors </option> <option houston rockets> Houston Rockets </option> <option indiana pacers> Indiana Pacers </option> <option la clippers> LA Clippers </option> <option los angeles lakers> Los Angeles Lakers </option> <option memphis grizzlies> Memphis Grizzlies </option> <option miami heat> Miami Heat </option> <option milwaukee bucks> Milwaukee Bucks </option> <option minnesota timberwolves> Minnesota Timberwolves </option> <option new orleans pelicans> New Orleans Pelicans </option> <option new york knicks> New York Knicks </option> <option oklahoma city thunder> Oklahoma City Thunder </option> <option orlando magic> Orlando Magic </option> <option philadelphia 76ers> Philadelphia 76ers </option> <option phoenix suns> Phoenix Suns </option> </select> </div> <section> <a id=31188> Buy Tickets </a> <a id=30394> Buy Tickets </a> </section> </section> <div id=31600> Hornets </div> </section> </html>\n```\nTask: check the best seat available below $500 for purchase to Chicago Bulls vs Charlotte Hornets on Mar 31st with wheel chair accessibility.\nPrevious actions:\n[link]  Tickets -> CLICK\n[select]  All Games -> SELECT: March\n[select]  All Teams -> SELECT: Chicago Bulls\n[link]  Find Tickets -> CLICK\n[link]  See More -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`CLICK [31188]`",
+    "raw_response": "`CLICK [31188]`",
+    "normalized_action": "CLICK [31188]",
+    "token_stats": {
+      "prompt_tokens": 1617,
+      "completion_tokens": 569,
+      "total_tokens": 2186
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [31188]",
+    "target_act": "CLICK [30394]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <button id=47691> <svg id=47692 img /> Filters </button> <div id=47747 tablist sort options> <span id=47749 tab asc> Lowest Price </span> <span id=46988 tab best> Best Seats </span> </div> </div> </html>\n```\nTask: check the best seat available below $500 for purchase to Chicago Bulls vs Charlotte Hornets on Mar 31st with wheel chair accessibility.\nPrevious actions:\n[link]  Find Tickets -> CLICK\n[link]  See More -> CLICK\n[link]  Buy Tickets -> CLICK\n[button]  Accept & Continue -> CLICK\n[textbox]  Maximum price $645+ -> TYPE: 500\nNext action:"
+      }
+    ],
+    "output": "`CLICK [46988]`",
+    "raw_response": "`CLICK [46988]`",
+    "normalized_action": "CLICK [46988]",
+    "token_stats": {
+      "prompt_tokens": 954,
+      "completion_tokens": 384,
+      "total_tokens": 1338
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [46988]",
+    "target_act": "CLICK [46988]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <section> <div> <button id=52911> <svg img /> Filters </button> <div id=53669 tablist sort options> <span id=53671 tab asc> Lowest Price </span> <span id=53673 tab best> Best Seats </span> </div> </div> <svg id=52912> </svg> </section> </html>\n```\nTask: check the best seat available below $500 for purchase to Chicago Bulls vs Charlotte Hornets on Mar 31st with wheel chair accessibility.\nPrevious actions:\n[link]  See More -> CLICK\n[link]  Buy Tickets -> CLICK\n[button]  Accept & Continue -> CLICK\n[textbox]  Maximum price $645+ -> TYPE: 500\n[tab]  Best Seats -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`CLICK [52911]`",
+    "raw_response": "`CLICK [52911]`",
+    "normalized_action": "CLICK [52911]",
+    "token_stats": {
+      "prompt_tokens": 966,
+      "completion_tokens": 168,
+      "total_tokens": 1134
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [52911]",
+    "target_act": "CLICK [52911]"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "element_acc": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+    ],
+    "action_f1": [
+      0,
+      0,
+      1.0,
+      1.0,
+      0,
+      1.0,
+      0,
+      0,
+      1.0,
+      1.0,
+      0,
+      0
+    ],
+    "step_success": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+    ],
+    "success": [
+      0
+    ],
+    "token_stats": {
+      "prompt_tokens": 6709,
+      "completion_tokens": 1579,
+      "total_tokens": 8288
+    }
+  }
+]

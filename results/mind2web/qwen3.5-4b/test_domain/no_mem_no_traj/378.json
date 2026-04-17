@@ -1,0 +1,144 @@
+[
+  {
+    "input": [],
+    "output": "The ground truth element is not in cleaned html",
+    "raw_response": "The ground truth element is not in cleaned html",
+    "normalized_action": "",
+    "token_stats": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1",
+    "error_type": "ground_truth_not_in_cleaned_html"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <body> <div> <div> <form> <input id=11192 text s search /> <button submit /> </form> <nav> <a id=11220> Breeds A-Z </a> <a> Expert Advice </a> <a> Products & Services </a> <a> Sports & Events </a> </nav> </div> <ul> <a id=11528> Dog Breeds </a> <a id=10916> Nutrition </a> </ul> </div> <div> <label> Search for a Breed </label> <select select a breed> </select> <input id=13984 text select a breed /> </div> </body> </html>\n```\nTask: Find a list of articles about vitamins and supplements for dogs.\nPrevious actions:\n[link]  EXPERT ADVICE -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`TYPE [13984] [vitamins supplements for dogs]`",
+    "raw_response": "`TYPE [13984] [vitamins supplements for dogs]`",
+    "normalized_action": "TYPE [13984] [vitamins supplements for dogs]",
+    "token_stats": {
+      "prompt_tokens": 975,
+      "completion_tokens": 163,
+      "total_tokens": 1138
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "TYPE [13984] [vitamins supplements for dogs]",
+    "target_act": "CLICK [10916]"
+  },
+  {
+    "input": [
+      {
+        "role": "system",
+        "content": "You are a large language model trained to navigate the web. Output the next action and wait for the next observation. Here is the action space:\n1. `CLICK [id]`: Click on an HTML element with its id.\n2. `TYPE [id] [value]`: Type a string into the element with the id.\n3. `SELECT [id] [value]`: Select a value for an HTML element by its id."
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a tock home page /> <button id=0 book a reservation. toggle open> <span> Book a reservation </span> </button> <button book a reservation. toggle open> </button> </div> <div> <select id=1 type> <option reservations true> Dine in </option> <option pickup> Pickup </option> <option delivery> Delivery </option> <option events> Events </option> <option wineries> Wineries </option> <option all> Everything </option> </select> <div id=2> <p> Celebrating and supporting leading women shaking up the industry. </p> <span> Explore now </span> </div> </div> </div> </html>\n```\nTask: Check for pickup restaurant available in Boston, NY on March 18, 5pm with just one guest\nPrevious actions:\nNone\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`SELECT [1] [Pickup]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <nav main menu> <ul> <li> <div button> Car Sales </div> <div id=0> <div> <div> <div> Buy A Car </div> <div> Plan Your Purchase </div> </div> <div> <h4> Its Tax Refund Time. Treat Yourself to an Upgrade. </h4> <p> With a variety of options, invest your refund in what you really want - a quality, used vehicle from Enterprise. </p> <a> View Inventory </a> </div> </div> </div> </li> <div id=1> Enterprise Fleet Management </div> </ul> </nav> <div region> <button id=2 selected pick-up date 03/19/2023> <span> <span> 19 </span> <div> <span> Mar </span> <span> 2023 </span> </div> </span> </button> </div> </div> </html>\n```\nTask: Find a mini van at Brooklyn City from April 5th to April 8th for a 22 year old renter.\nPrevious actions:\n[searchbox]  Pick-up & Return Location (ZIP, City or Airport) (... -> TYPE: Brooklyn\n[option]  Brooklyn, NY, US Select -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`CLICK [2]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <form search> <input id=6385 search q blazer search by keyword /> <button submit search> </button> <button button close> </button> </form> </html>\n```\nTask: Find a black blazer for men with L size and add to wishlist.\nPrevious actions:\n[svg]   -> CLICK\nNext action:"
+      },
+      {
+        "role": "assistant",
+        "content": "`TYPE [6385] [blazer]`"
+      },
+      {
+        "role": "user",
+        "content": "Observation:\n```\n<html> <div> <div> <a id=20500> Vitamins & Supplements </a> <div> <label> YOUR PUPPYS BREED </label> <select id=23821 dogbreed> <option true> Breed </option> <option affenpinscher> Affenpinscher </option> <option afghan hound> Afghan Hound </option> <option airedale terrier> Airedale Terrier </option> <option akita> Akita </option> <option alaskan klee kai> Alaskan Klee Kai </option> <option alaskan malamute> Alaskan Malamute </option> <option american bulldog> American Bulldog </option> <option american english coonhound> American English Coonhound </option> <option american eskimo dog> American Eskimo Dog </option> <option american foxhound> American Foxhound </option> <option american hairless terrier> American Hairless Terrier </option> <option american leopard hound> American Leopard Hound </option> <option american staffordshire terrier> American Staffordshire Terrier </option> <option american water spaniel> American Water Spaniel </option> <option anatolian shepherd dog> Anatolian Shepherd Dog </option> <option appenzeller sennenhund> Appenzeller Sennenhund </option> <option australian cattle dog> Australian Cattle Dog </option> <option australian kelpie> Australian Kelpie </option> <option australian shepherd> Australian Shepherd </option> <option australian stumpy tail cattle dog> Australian Stumpy Tail Cattle Dog </option> <option australian terrier> Australian Terrier </option> <option azawakh> Azawakh </option> <option barbado da terceira> Barbado da Terceira </option> <option barbet> Barbet </option> </select> </div> </div> <div> <div> <a id=24532> Nutrition </a> <span> Sponsored </span> </div> <div> <a id=24624> Nutrition </a> <span> Sponsored </span> </div> <div> <a id=24827> General Nutrition </a> <a> Best Dog Food for Sensitive Stomachs </a> </div> </div> </div> </html>\n```\nTask: Find a list of articles about vitamins and supplements for dogs.\nPrevious actions:\n[link]  EXPERT ADVICE -> CLICK\n[link]  Nutrition -> CLICK\nNext action:"
+      }
+    ],
+    "output": "`CLICK [20500]`",
+    "raw_response": "`CLICK [20500]`",
+    "normalized_action": "CLICK [20500]",
+    "token_stats": {
+      "prompt_tokens": 1328,
+      "completion_tokens": 170,
+      "total_tokens": 1498
+    },
+    "chat_model": "qwen3.5:4b",
+    "embedding_model": "qwen3-embedding:0.6b",
+    "api_base": "http://localhost:11434/v1"
+  },
+  {
+    "pred_act": "CLICK [20500]",
+    "target_act": "CLICK [20500]"
+  },
+  {
+    "element_acc": [
+      0,
+      0,
+      1
+    ],
+    "action_f1": [
+      0,
+      0,
+      1.0
+    ],
+    "step_success": [
+      0,
+      0,
+      1
+    ],
+    "success": [
+      0
+    ],
+    "token_stats": {
+      "prompt_tokens": 2303,
+      "completion_tokens": 333,
+      "total_tokens": 2636
+    }
+  }
+]
